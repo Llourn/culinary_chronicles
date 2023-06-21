@@ -1,0 +1,4 @@
+.group::part(active-tab-indicator) {
+  border-radius: 15px;
+  border-bottom-color: red;
+}
