@@ -1,0 +1,6 @@
+/* The line under each nav item */
+.group::part(active-tab-indicator) {
+  border-radius: 15px;
+  border-bottom-color: white;
+}
+
