@@ -18,8 +18,13 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    recipes: async () => {
-      return await Recipe.find({});
+    recipes: async (parent, args) => {
+      return await Recipe.find({
+        //or operator to find recipes with tags or name
+        //if no tags or name, return all recipes
+        $or: [{ tags: { $in: args.tags } }, 
+              { name: { $regex: args.name } }],
+      });
     }
   },
   Mutation: {
@@ -54,6 +59,21 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    addRecipe: async (parent, args) => {
+      return await Recipe.create(args);
+    },
+    updateRecipe: async (parent, args, context) => {
+      if(context.recipes) {
+        return await Recipe.findByIdAndUpdate(context.recipes._id, args, {
+          new: true,
+        });
+      }
+    },
+    deleteRecipe: async (parent, args, context) => {
+      if(context.recipes) {
+        return await Recipe.findByIdAndDelete(context.recipes._id);
+      }
     },
   },
 };
