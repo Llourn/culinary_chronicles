@@ -16,6 +16,7 @@ import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
+import Footer from './components/Footer';
 
 setBasePath(
   "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/"
@@ -52,6 +53,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>
