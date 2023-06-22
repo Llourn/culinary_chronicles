@@ -1,9 +1,14 @@
 import React from "react";
+import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const NoMatch = () => {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <h1>404 Page Not Found</h1>
+    <div className="container">
+      <h1>This page does not exist</h1>
+      <Button handleClick={() => navigate("/")}>HOME</Button>
     </div>
   );
 };
