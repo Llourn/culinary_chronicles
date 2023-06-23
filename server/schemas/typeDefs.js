@@ -10,6 +10,7 @@ const typeDefs = gql`
 
   type Recipe {
     _id: ID
+    author: User!
     name: String
     description: String
     prepTime: String
@@ -31,7 +32,8 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    recipes(name: String, tags:[String]): [Recipe]
+    recipes(name: String, tags: [String]): [Recipe]
+    likes(userId: ID): [LikedRecipe]
   }
 
   type Mutation {
@@ -49,6 +51,7 @@ const typeDefs = gql`
     ): User
     login(email: String!, password: String!): Auth
     addRecipe(
+      userId: ID!
       name: String!
       description: String!
       prepTime: String!
@@ -76,6 +79,7 @@ const typeDefs = gql`
       tags: [String]
     ): Recipe
     deleteRecipe(_id: ID!): Recipe
+    likeRecipe(userId: ID!, recipeId: ID!): LikedRecipe!
   }
 `;
 
