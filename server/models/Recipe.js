@@ -43,18 +43,15 @@ const recipeSchema = new Schema({
       required: true,
     },
   ],
-  directions: {
-    type: String,
-    required: true,
-    minlength: 10,
-  },
+  directions: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   image: {
     data: Buffer,
     contentType: String,
-  },
-  likeCount: {
-    type: Number,
-    default: 0,
   },
   tags: [
     {

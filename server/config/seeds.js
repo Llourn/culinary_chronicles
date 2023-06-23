@@ -1,5 +1,5 @@
 const db = require("./connection");
-const { User, Recipe } = require("../models");
+const { User, Recipe, LikedRecipe } = require("../models");
 
 db.once("open", async () => {
   await User.deleteMany();
@@ -78,8 +78,13 @@ db.once("open", async () => {
         "1 tablespoon butter",
         "Salt and pepper to taste",
       ],
-      directions:
-        "1. Crack the eggs into a bowl and whisk.\n2. Heat the butter in a non-stick pan over medium heat.\n3. Pour the whisked eggs into the pan and cook, stirring gently, until they reach your desired consistency.\n4. Season with salt and pepper.\n5. Serve hot.",
+      directions: [
+        "Crack the eggs into a bowl and whisk.",
+        "Heat the butter in a non-stick pan over medium heat.",
+        "Pour the whisked eggs into the pan and cook, stirring gently, until they reach your desired consistency.",
+        "Season with salt and pepper.",
+        "Serve hot.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["breakfast"],
     },
@@ -98,8 +103,14 @@ db.once("open", async () => {
         "Croutons",
         "Caesar dressing",
       ],
-      directions:
-        "1. Wash and chop the romaine lettuce.\n2. Toss the lettuce with the grated Parmesan cheese.\n3. Add croutons.\n4. Drizzle Caesar dressing over the salad.\n5. Toss to coat evenly.\n6. Serve immediately.",
+      directions: [
+        "Wash and chop the romaine lettuce.",
+        "Toss the lettuce with the grated Parmesan cheese.",
+        "Add croutons.",
+        "Drizzle Caesar dressing over the salad.",
+        "Toss to coat evenly.",
+        "Serve immediately.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["lunch", "dinner"],
     },
@@ -123,8 +134,15 @@ db.once("open", async () => {
         "Salt and pepper to taste",
         "Grated Parmesan cheese for garnish",
       ],
-      directions:
-        "1. Cook the spaghetti according to package instructions.\n2. In a separate pan, brown the ground beef over medium heat.\n3. Add chopped onion and minced garlic to the pan and cook until softened.\n4. Stir in crushed tomatoes, tomato paste, dried oregano, salt, and pepper.\n5. Simmer the sauce for 15-20 minutes.\n6. Serve the sauce over cooked spaghetti.\n7. Garnish with grated Parmesan cheese.",
+      directions: [
+        "Cook the spaghetti according to package instructions.",
+        "In a separate pan, brown the ground beef over medium heat.",
+        "Add chopped onion and minced garlic to the pan and cook until softened.",
+        "Stir in crushed tomatoes, tomato paste, dried oregano, salt, and pepper.",
+        "Simmer the sauce for 15-20 minutes.",
+        "Serve the sauce over cooked spaghetti.",
+        "Garnish with grated Parmesan cheese.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["dinner"],
     },
@@ -148,8 +166,17 @@ db.once("open", async () => {
         "1/2 teaspoon salt",
         "2 cups chocolate chips",
       ],
-      directions:
-        "1. Preheat oven to 375°F (190°C).\n2. In a large bowl, cream together the butter, granulated sugar, and brown sugar until smooth.\n3. Beat in the eggs one at a time, then stir in the vanilla.\n4. In a separate bowl, combine the flour, baking soda, and salt.\n5. Gradually add the dry ingredients to the butter mixture and mix well.\n6. Stir in the chocolate chips.\n7. Drop rounded tablespoons of dough onto ungreased baking sheets.\n8. Bake for 10-12 minutes or until golden brown.\n9. Cool on wire racks.",
+      directions: [
+        "Preheat oven to 375°F (190°C).",
+        "In a large bowl, cream together the butter, granulated sugar, and brown sugar until smooth.",
+        "Beat in the eggs one at a time, then stir in the vanilla.",
+        "In a separate bowl, combine the flour, baking soda, and salt.",
+        "Gradually add the dry ingredients to the butter mixture and mix well.",
+        "Stir in the chocolate chips.",
+        "Drop rounded tablespoons of dough onto ungreased baking sheets.",
+        "Bake for 10-12 minutes or until golden brown.",
+        "Cool on wire racks.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["dessert"],
     },
@@ -170,8 +197,14 @@ db.once("open", async () => {
         "1 tablespoon lime juice",
         "Salt and pepper to taste",
       ],
-      directions:
-        "1. Cut the avocados in half and remove the pits.\n2. Scoop the avocado flesh into a bowl and mash with a fork.\n3. Add the chopped onion, diced tomato, cilantro, lime juice, salt, and pepper.\n4. Mix well to combine.\n5. Taste and adjust the seasoning if needed.\n6. Serve with tortilla chips or as a topping for tacos or burritos.",
+      directions: [
+        "Cut the avocados in half and remove the pits.",
+        "Scoop the avocado flesh into a bowl and mash with a fork.",
+        "Add the chopped onion, diced tomato, cilantro, lime juice, salt, and pepper.",
+        "Mix well to combine.",
+        "Taste and adjust the seasoning if needed.",
+        "Serve with tortilla chips or as a topping for tacos or burritos.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["snack", "other"],
     },
@@ -194,8 +227,15 @@ db.once("open", async () => {
         "2 tablespoons unsalted butter, melted",
         "1 teaspoon vanilla extract",
       ],
-      directions:
-        "1. In a large bowl, whisk together the flour, sugar, baking powder, and salt.\n2. In a separate bowl, whisk together the milk, egg, melted butter, and vanilla extract.\n3. Pour the wet ingredients into the dry ingredients and stir until just combined.\n4. Heat a non-stick skillet or griddle over medium heat.\n5. Pour 1/4 cup of batter onto the skillet for each pancake.\n6. Cook until bubbles form on the surface, then flip and cook until golden brown.\n7. Serve hot with your favorite toppings.",
+      directions: [
+        "In a large bowl, whisk together the flour, sugar, baking powder, and salt.",
+        "In a separate bowl, whisk together the milk, egg, melted butter, and vanilla extract.",
+        "Pour the wet ingredients into the dry ingredients and stir until just combined.",
+        "Heat a non-stick skillet or griddle over medium heat.",
+        "Pour 1/4 cup of batter onto the skillet for each pancake.",
+        "Cook until bubbles form on the surface, then flip and cook until golden brown.",
+        "Serve hot with your favorite toppings.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["breakfast"],
     },
@@ -220,8 +260,17 @@ db.once("open", async () => {
         "1 cup shredded mozzarella cheese",
         "Fresh basil leaves for garnish",
       ],
-      directions:
-        "1. Preheat oven to 400°F (200°C).\n2. In a shallow dish, combine breadcrumbs, Parmesan cheese, oregano, garlic powder, salt, and pepper.\n3. Dip each chicken breast in the breadcrumb mixture, pressing firmly to coat.\n4. Place the breaded chicken breasts on a greased baking sheet.\n5. Bake for 20 minutes or until chicken is cooked through.\n6. Remove from the oven and spoon marinara sauce over each chicken breast.\n7. Sprinkle shredded mozzarella cheese on top.\n8. Return to the oven and bake for an additional 10 minutes or until cheese is melted and bubbly.\n9. Garnish with fresh basil leaves before serving.",
+      directions: [
+        "Preheat oven to 400°F (200°C).",
+        "In a shallow dish, combine breadcrumbs, Parmesan cheese, oregano, garlic powder, salt, and pepper.",
+        "Dip each chicken breast in the breadcrumb mixture, pressing firmly to coat.",
+        "Place the breaded chicken breasts on a greased baking sheet.",
+        "Bake for 20 minutes or until chicken is cooked through.",
+        "Remove from the oven and spoon marinara sauce over each chicken breast.",
+        "Sprinkle shredded mozzarella cheese on top.",
+        "Return to the oven and bake for an additional 10 minutes or until cheese is melted and bubbly.",
+        "Garnish with fresh basil leaves before serving.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["dinner"],
     },
@@ -243,8 +292,14 @@ db.once("open", async () => {
         "Juice of 1 lime",
         "Salt to taste",
       ],
-      directions:
-        "1. In a bowl, combine the diced mangoes, red bell pepper, red onion, jalapeño pepper, and cilantro.\n2. Squeeze lime juice over the mixture.\n3. Season with salt to taste.\n4. Toss gently to combine all the ingredients.\n5. Allow the flavors to meld for at least 10 minutes before serving.\n6. Serve as a dip with tortilla chips or as a topping for grilled fish or tacos.",
+      directions: [
+        "In a bowl, combine the diced mangoes, red bell pepper, red onion, jalapeño pepper, and cilantro.",
+        "Squeeze lime juice over the mixture.",
+        "Season with salt to taste.",
+        "Toss gently to combine all the ingredients.",
+        "Allow the flavors to meld for at least 10 minutes before serving.",
+        "Serve as a dip with tortilla chips or as a topping for grilled fish or tacos.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["snack", "other"],
     },
@@ -267,8 +322,19 @@ db.once("open", async () => {
         "1/2 cup heavy cream",
         "Salt and pepper to taste",
       ],
-      directions:
-        "1. Heat olive oil in a large pot over medium heat.\n2. Add chopped onion and minced garlic.\n3. Cook until onion is soft and translucent.\n4. Add crushed tomatoes and vegetable broth.\n5. Bring the mixture to a boil, then reduce heat and simmer for 15 minutes.\n6. Stir in chopped basil.\n7. Use an immersion blender to puree the soup until smooth.\n8. Stir in heavy cream.\n9. Season with salt and pepper.\n10. Heat the soup for an additional 5 minutes.\n11. Serve hot with a garnish of fresh basil leaves.",
+      directions: [
+        "Heat olive oil in a large pot over medium heat.",
+        "Add chopped onion and minced garlic.",
+        "Cook until onion is soft and translucent.",
+        "Add crushed tomatoes and vegetable broth.",
+        "Bring the mixture to a boil, then reduce heat and simmer for 15 minutes.",
+        "Stir in chopped basil.",
+        "Use an immersion blender to puree the soup until smooth.",
+        "Stir in heavy cream.",
+        "Season with salt and pepper.",
+        "Heat the soup for an additional 5 minutes.",
+        "Serve hot with a garnish of fresh basil leaves.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["lunch", "dinner"],
     },
@@ -288,8 +354,13 @@ db.once("open", async () => {
         "1/2 cup plain yogurt",
         "1 tablespoon honey (optional)",
       ],
-      directions:
-        "1. Place the mixed berries, banana, milk, yogurt, and honey (if using) in a blender.\n2. Blend until smooth and creamy.\n3. Taste and add more honey if desired.\n4. Pour into glasses and serve immediately.\n5. Garnish with additional berries if desired.",
+      directions: [
+        "Place the mixed berries, banana, milk, yogurt, and honey (if using) in a blender.",
+        "Blend until smooth and creamy.",
+        "Taste and add more honey if desired.",
+        "Pour into glasses and serve immediately.",
+        "Garnish with additional berries if desired.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["breakfast", "snack"],
     },
@@ -311,8 +382,15 @@ db.once("open", async () => {
         "Balsamic glaze",
         "Salt and pepper to taste",
       ],
-      directions:
-        "1. Slice the tomatoes and mozzarella into 1/4-inch thick slices.\n2. Arrange the tomato and mozzarella slices on a serving platter, alternating them.\n3. Tuck fresh basil leaves between the tomato and mozzarella slices.\n4. Drizzle with extra virgin olive oil.\n5. Drizzle balsamic glaze over the salad.\n6. Season with salt and pepper.\n7. Serve immediately as a light appetizer or side dish.",
+      directions: [
+        "Slice the tomatoes and mozzarella into 1/4-inch thick slices.",
+        "Arrange the tomato and mozzarella slices on a serving platter, alternating them.",
+        "Tuck fresh basil leaves between the tomato and mozzarella slices.",
+        "Drizzle with extra virgin olive oil.",
+        "Drizzle balsamic glaze over the salad.",
+        "Season with salt and pepper.",
+        "Serve immediately as a light appetizer or side dish.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["lunch", "dinner"],
     },
@@ -339,8 +417,18 @@ db.once("open", async () => {
         "1 teaspoon grated ginger",
         "Salt and pepper to taste",
       ],
-      directions:
-        "1. In a bowl, combine sliced chicken, soy sauce, and cornstarch.\n2. Toss to coat the chicken evenly.\n3. Heat vegetable oil in a large pan or wok over high heat.\n4. Add the chicken to the pan and stir-fry until cooked through.\n5. Remove the chicken from the pan and set aside.\n6. In the same pan, add sliced bell pepper, zucchini, carrot, broccoli, mushrooms, garlic, and ginger.\n7. Stir-fry the vegetables until crisp-tender.\n8. Return the chicken to the pan and toss to combine with the vegetables.\n9. Season with salt and pepper.\n10. Serve hot with steamed rice or noodles.",
+      directions: [
+        "In a bowl, combine sliced chicken, soy sauce, and cornstarch.",
+        "Toss to coat the chicken evenly.",
+        "Heat vegetable oil in a large pan or wok over high heat.",
+        "Add the chicken to the pan and stir-fry until cooked through.",
+        "Remove the chicken from the pan and set aside.",
+        "In the same pan, add sliced bell pepper, zucchini, carrot, broccoli, mushrooms, garlic, and ginger.",
+        "Stir-fry the vegetables until crisp-tender.",
+        "Return the chicken to the pan and toss to combine with the vegetables.",
+        "Season with salt and pepper.",
+        "Serve hot with steamed rice or noodles.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["dinner"],
     },
@@ -365,8 +453,16 @@ db.once("open", async () => {
         "1 teaspoon vanilla extract",
         "1 1/2 cups fresh blueberries",
       ],
-      directions:
-        "1. Preheat oven to 375°F (190°C).\n2. In a large bowl, whisk together the flour, sugar, baking powder, baking soda, and salt.\n3. In a separate bowl, whisk together buttermilk, melted butter, eggs, and vanilla extract.\n4. Pour the wet ingredients into the dry ingredients and stir until just combined.\n5. Gently fold in the fresh blueberries.\n6. Divide the batter evenly among a greased muffin tin or lined muffin cups.\n7. Bake for 18-20 minutes or until a toothpick inserted into the center comes out clean.\n8. Allow the muffins to cool in the tin for 5 minutes, then transfer to a wire rack to cool completely.",
+      directions: [
+        "Preheat oven to 375°F (190°C).",
+        "In a large bowl, whisk together the flour, sugar, baking powder, baking soda, and salt.",
+        "In a separate bowl, whisk together buttermilk, melted butter, eggs, and vanilla extract.",
+        "Pour the wet ingredients into the dry ingredients and stir until just combined.",
+        "Gently fold in the fresh blueberries.",
+        "Divide the batter evenly among a greased muffin tin or lined muffin cups.",
+        "Bake for 18-20 minutes or until a toothpick inserted into the center comes out clean.",
+        "Allow the muffins to cool in the tin for 5 minutes, then transfer to a wire rack to cool completely.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["breakfast", "snack"],
     },
@@ -394,8 +490,19 @@ db.once("open", async () => {
         "Salt to taste",
         "Fresh cilantro leaves for garnish",
       ],
-      directions:
-        "1. Heat vegetable oil in a large pot over medium heat.\n2. Add chopped onion, minced garlic, and grated ginger.\n3. Cook until onion is soft and translucent.\n4. Add curry powder, cumin, turmeric, and cayenne pepper.\n5. Stir well to coat the onions and spices.\n6. Add chopped mixed vegetables and cook for 2-3 minutes.\n7. Pour in coconut milk and vegetable broth.\n8. Bring the mixture to a boil, then reduce heat and simmer for 20-25 minutes or until the vegetables are tender.\n9. Season with salt to taste.\n10. Serve hot with steamed rice or naan bread.\n11. Garnish with fresh cilantro leaves.",
+      directions: [
+        "Heat vegetable oil in a large pot over medium heat.",
+        "Add chopped onion, minced garlic, and grated ginger.",
+        "Cook until onion is soft and translucent.",
+        "Add curry powder, cumin, turmeric, and cayenne pepper.",
+        "Stir well to coat the onions and spices.",
+        "Add chopped mixed vegetables and cook for 2-3 minutes.",
+        "Pour in coconut milk and vegetable broth.",
+        "Bring the mixture to a boil, then reduce heat and simmer for 20-25 minutes or until the vegetables are tender.",
+        "Season with salt to taste.",
+        "Serve hot with steamed rice or naan bread.",
+        "Garnish with fresh cilantro leaves.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["lunch", "dinner"],
     },
@@ -421,14 +528,43 @@ db.once("open", async () => {
         "Powdered sugar for dusting",
         "Fresh berries for garnish",
       ],
-      directions:
-        "1. Preheat oven to 425°F (220°C).\n2. Grease four ramekins or custard cups with butter.\n3. In a microwave-safe bowl, melt the butter and chopped dark chocolate together in the microwave.\n4. Stir until smooth and well combined.\n5. In a separate bowl, whisk together powdered sugar, eggs, egg yolks, and vanilla extract.\n6. Add the melted chocolate mixture to the egg mixture and whisk until smooth.\n7. Gradually whisk in the flour and a pinch of salt.\n8. Divide the batter equally among the prepared ramekins.\n9. Place the ramekins on a baking sheet and bake for 12 minutes.\n10. The cakes should be set around the edges but still slightly soft in the center.\n11. Remove from the oven and let them cool in the ramekins for 1-2 minutes.\n12. Carefully invert each ramekin onto a serving plate.\n13. Dust with powdered sugar and garnish with fresh berries.\n14. Serve immediately, while the cakes are still warm and the centers are gooey.",
+      directions: [
+        "Preheat oven to 425°F (220°C).",
+        "Grease four ramekins or custard cups with butter.",
+        "In a microwave-safe bowl, melt the butter and chopped dark chocolate together in the microwave.",
+        "Stir until smooth and well combined.",
+        "In a separate bowl, whisk together powdered sugar, eggs, egg yolks, and vanilla extract.",
+        "Add the melted chocolate mixture to the egg mixture and whisk until smooth.",
+        "Gradually whisk in the flour and a pinch of salt.",
+        "Divide the batter equally among the prepared ramekins.",
+        "Place the ramekins on a baking sheet and bake for 12 minutes.",
+        "The cakes should be set around the edges but still slightly soft in the center.",
+        "Remove from the oven and let them cool in the ramekins for 1-2 minutes.",
+        "Carefully invert each ramekin onto a serving plate.",
+        "Dust with powdered sugar and garnish with fresh berries.",
+        "Serve immediately, while the cakes are still warm and the centers are gooey.",
+      ],
       image: "https://example.com/recipeplaceholder.png",
       tags: ["dessert"],
     },
   ]);
 
-  console.log(newRecipes);
+  let likedRecipeQueue = [];
+
+  newUsers.forEach((newUser) => {
+    newRecipes.forEach((newRecipe) => {
+      if (Math.random() > 0.5) {
+        likedRecipeQueue.push({
+          user: newUser._id,
+          recipe: newRecipe._id,
+        });
+      }
+    });
+  });
+
+  let likedRecipes = await LikedRecipe.insertMany(likedRecipeQueue);
+
+  console.log(likedRecipes);
 
   process.exit();
 });

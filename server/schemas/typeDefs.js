@@ -19,9 +19,8 @@ const typeDefs = gql`
     servings: Int
     yield: String
     ingredients: [String]
-    directions: String
+    directions: [String]
     image: String
-    likeCount: Int
     tags: [String]
   }
 
