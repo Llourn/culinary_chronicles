@@ -64,16 +64,12 @@ const resolvers = {
       return await Recipe.create(args);
     },
     updateRecipe: async (parent, args, context) => {
-      if(context.recipes) {
-        return await Recipe.findByIdAndUpdate(context.recipes._id, args, {
+        return await Recipe.findByIdAndUpdate(args._id, args, {
           new: true,
         });
-      }
     },
-    deleteRecipe: async (parent, args, context) => {
-      if(context.recipes) {
-        return await Recipe.findByIdAndDelete(context.recipes._id);
-      }
+    deleteRecipe: async (parent, args) => {
+        return await Recipe.findByIdAndDelete(args._id);
     },
   },
 };
