@@ -24,6 +24,15 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  profilePicUrl: {
+    type: String,
+  },
+  bannerUrl: {
+    type: String,
+  },
+  bio: {
+    type: String,
+  },
 });
 
 // set up pre-save middleware to create password

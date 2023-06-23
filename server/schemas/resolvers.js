@@ -1,18 +1,13 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Recipe } = require("../models");
+const mongoose = require("mongoose");
+const { User, Recipe, LikedRecipe } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: "orders.products",
-          populate: "category",
-        });
-
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
+        const user = await User.findById(context.user._id);
         return user;
       }
 
@@ -22,10 +17,51 @@ const resolvers = {
       return await Recipe.find({
         //or operator to find recipes with tags or name
         //if no tags or name, return all recipes
-        $or: [{ tags: { $in: args.tags } }, 
-              { name: { $regex: args.name } }],
+        $or: [{ tags: { $in: args.tags } }, { name: { $regex: args.name } }],
       });
-    }
+    },
+    likedRecipes: async (parent, args) => {
+      const result = await LikedRecipe.aggregate([
+        {
+          $match: {
+            user: new mongoose.Types.ObjectId(args.userId),
+          },
+        },
+        {
+          $lookup: {
+            from: "recipes",
+            localField: "recipe",
+            foreignField: "_id",
+            as: "recipeData",
+          },
+        },
+        {
+          $unwind: "$recipeData",
+        },
+        {
+          $project: {
+            _id: "$recipeData._id",
+            author: "$recipeData.author",
+            name: "$recipeData.name",
+            description: "$recipeData.description",
+            prepTime: "$recipeData.prepTime",
+            cookTime: "$recipeData.cookTime",
+            totalTime: "$recipeData.totalTime",
+            servings: "$recipeData.servings",
+            yield: "$recipeData.yield",
+            ingredients: "$recipeData.ingredients",
+            directions: "$recipeData.directions",
+            image: "$recipeData.image",
+            tags: "$recipeData.tags",
+          },
+        },
+      ]);
+
+      return await User.populate(result, { path: "author" });
+    },
+    recipeLikes: async (parent, args) => {
+      return await LikedRecipe.find({ recipe: args.recipeId }).count();
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -64,12 +100,12 @@ const resolvers = {
       return await Recipe.create(args);
     },
     updateRecipe: async (parent, args, context) => {
-        return await Recipe.findByIdAndUpdate(args._id, args, {
-          new: true,
-        });
+      return await Recipe.findByIdAndUpdate(args._id, args, {
+        new: true,
+      });
     },
     deleteRecipe: async (parent, args) => {
-        return await Recipe.findByIdAndDelete(args._id);
+      return await Recipe.findByIdAndDelete(args._id);
     },
   },
 };
