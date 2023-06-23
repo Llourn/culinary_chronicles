@@ -25,6 +25,12 @@ const typeDefs = gql`
     tags: [String]
   }
 
+  type LikedRecipe {
+    _id: ID
+    userID: ID!
+    recipeID: ID!
+  }
+
   type Auth {
     token: ID
     user: User
@@ -33,7 +39,8 @@ const typeDefs = gql`
   type Query {
     user: User
     recipes(name: String, tags: [String]): [Recipe]
-    likes(userId: ID): [LikedRecipe]
+    likedRecipes(userId: ID): [LikedRecipe]
+    recipeLikes(recipeId: ID): Int
   }
 
   type Mutation {
