@@ -8,14 +8,17 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
-import "@shoelace-style/shoelace/dist/themes/light.css";
+import "@shoelace-style/shoelace/dist/themes/dark.css";
 import { setBasePath } from "@shoelace-style/shoelace/dist/utilities/base-path";
 
 import Home from "./pages/Home";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Nav from "./components/Nav.jsx";
+import Test from "./pages/Test";
+import Nav from "./components/Nav";
+import Footer from './components/Footer';
+
 
 setBasePath(
   "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/"
@@ -50,8 +53,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/test" element={<Test/>} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>
