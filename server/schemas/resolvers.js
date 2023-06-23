@@ -1,4 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
+const mongoose = require("mongoose");
 const { User, Recipe, LikedRecipe } = require("../models");
 const { signToken } = require("../utils/auth");
 
@@ -20,7 +21,43 @@ const resolvers = {
       });
     },
     likedRecipes: async (parent, args) => {
-      return await LikedRecipe.find({ user: args.userId });
+      const result = await LikedRecipe.aggregate([
+        {
+          $match: {
+            user: new mongoose.Types.ObjectId(args.userId),
+          },
+        },
+        {
+          $lookup: {
+            from: "recipes",
+            localField: "recipe",
+            foreignField: "_id",
+            as: "recipeData",
+          },
+        },
+        {
+          $unwind: "$recipeData",
+        },
+        {
+          $project: {
+            _id: "$recipeData._id",
+            author: "$recipeData.author",
+            name: "$recipeData.name",
+            description: "$recipeData.description",
+            prepTime: "$recipeData.prepTime",
+            cookTime: "$recipeData.cookTime",
+            totalTime: "$recipeData.totalTime",
+            servings: "$recipeData.servings",
+            yield: "$recipeData.yield",
+            ingredients: "$recipeData.ingredients",
+            directions: "$recipeData.directions",
+            image: "$recipeData.image",
+            tags: "$recipeData.tags",
+          },
+        },
+      ]);
+
+      return await User.populate(result, { path: "author" });
     },
     recipeLikes: async (parent, args) => {
       return await LikedRecipe.find({ recipe: args.recipeId }).count();
