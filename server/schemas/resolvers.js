@@ -20,10 +20,10 @@ const resolvers = {
       });
     },
     likedRecipes: async (parent, args) => {
-      return await LikedRecipe.find({ userId: args.userId });
+      return await LikedRecipe.find({ user: args.userId });
     },
     recipeLikes: async (parent, args) => {
-      return await LikedRecipe.find({ recipeId: args.recipeId }).count();
+      return await LikedRecipe.find({ recipe: args.recipeId }).count();
     },
   },
   Mutation: {
