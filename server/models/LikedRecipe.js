@@ -13,6 +13,6 @@ const likedRecipeSchema = new Schema({
   },
 });
 
-const LikedRecipeSchema = mongoose.model("User", likedRecipeSchema);
+const LikedRecipe = mongoose.model("LikedRecipe", likedRecipeSchema);
 
-module.exports = LikedRecipeSchema;
+module.exports = LikedRecipe;
