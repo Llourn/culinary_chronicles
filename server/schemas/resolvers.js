@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Recipe } = require("../models");
+const { User, Recipe, LikedRecipe } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -16,10 +16,15 @@ const resolvers = {
       return await Recipe.find({
         //or operator to find recipes with tags or name
         //if no tags or name, return all recipes
-        $or: [{ tags: { $in: args.tags } }, 
-              { name: { $regex: args.name } }],
+        $or: [{ tags: { $in: args.tags } }, { name: { $regex: args.name } }],
       });
-    }
+    },
+    likedRecipes: async (parent, args) => {
+      return await LikedRecipe.find({ userId: args.userId });
+    },
+    recipeLikes: async (parent, args) => {
+      return await LikedRecipe.find({ recipeId: args.recipeId }).count();
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -58,12 +63,12 @@ const resolvers = {
       return await Recipe.create(args);
     },
     updateRecipe: async (parent, args, context) => {
-        return await Recipe.findByIdAndUpdate(args._id, args, {
-          new: true,
-        });
+      return await Recipe.findByIdAndUpdate(args._id, args, {
+        new: true,
+      });
     },
     deleteRecipe: async (parent, args) => {
-        return await Recipe.findByIdAndDelete(args._id);
+      return await Recipe.findByIdAndDelete(args._id);
     },
   },
 };
