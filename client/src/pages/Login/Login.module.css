@@ -7,3 +7,18 @@
   max-width: 550px;
   margin: auto;
 }
+
+.formContainer form {
+  padding-inline: 1rem;
+}
+
+.formContainer h2 {
+  padding-inline: 1rem;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  max-height: 18rem;
+  object-position: 50% 75%;
+}

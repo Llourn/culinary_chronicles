@@ -35,6 +35,11 @@ function Login(props) {
 
   return (
     <div className={styles.formContainer}>
+      <img
+        className={styles.image}
+        src="./images/welcome-back-login.jpg"
+        alt="welcome sign"
+      />
       <h2>Login</h2>
       <form onSubmit={handleFormSubmit}>
         <SlInput

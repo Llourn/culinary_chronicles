@@ -35,7 +35,13 @@ function Signup(props) {
 
   return (
     <div className={styles.formContainer}>
+      <img
+        className={styles.image}
+        src="./images/welcome-signup.jpg"
+        alt="welcome sign"
+      />
       <h2>Sign Up</h2>
+
       <form onSubmit={handleFormSubmit}>
         <SlInput
           label="First Name"
