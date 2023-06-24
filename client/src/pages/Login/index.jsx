@@ -42,7 +42,7 @@ function Login(props) {
           placeholder="norm@oscorp.com"
           name="email"
           type="email"
-          onChange={handleChange}
+          onSlInput={handleChange}
           clearable
           defaultValue=""
           required
@@ -55,7 +55,7 @@ function Login(props) {
           type="password"
           passwordToggle
           clearable
-          onChange={handleChange}
+          onSlInput={handleChange}
           required
           defaultValue=""
           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
