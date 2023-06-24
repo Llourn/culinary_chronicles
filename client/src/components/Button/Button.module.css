@@ -1,0 +1,11 @@
+sl-button.btn::part(base) {
+  --sl-color-primary-600: var(--primary);
+  --sl-color-success-600: var(--success);
+  --sl-color-danger-600: var(--danger);
+  --sl-color-warning-600: var(--warning);
+
+  border-radius: 0px;
+  text-transform: uppercase;
+  letter-spacing: var(--sl-letter-spacing-looser);
+  text-indent: var(--sl-letter-spacing-looser);
+}

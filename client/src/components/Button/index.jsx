@@ -1,8 +1,9 @@
 import React from "react";
 import { SlButton } from "@shoelace-style/shoelace/dist/react";
+import styles from "./Button.module.css";
 
 const Button = ({
-  variant = "neutral",
+  variant = "primary",
   style,
   handleClick,
   size = "medium",
@@ -11,6 +12,7 @@ const Button = ({
   return (
     <>
       <SlButton
+        className={styles.btn}
         variant={variant}
         style={style}
         onClick={handleClick}
