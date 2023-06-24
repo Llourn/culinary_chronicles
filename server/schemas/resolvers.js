@@ -14,11 +14,13 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
     recipes: async (parent, args) => {
-      return await Recipe.find({
+      const result = await Recipe.find({
         //or operator to find recipes with tags or name
         //if no tags or name, return all recipes
         $or: [{ tags: { $in: args.tags } }, { name: { $regex: args.name } }],
       });
+
+      return await User.populate(result, { path: "author" });
     },
     likedRecipes: async (parent, args) => {
       const result = await LikedRecipe.aggregate([
@@ -97,12 +99,16 @@ const resolvers = {
       return { token, user };
     },
     addRecipe: async (parent, args) => {
-      return await Recipe.create(args);
+      const result = await Recipe.create(args);
+
+      return await User.populate(result, { path: "author" });
     },
     updateRecipe: async (parent, args, context) => {
-      return await Recipe.findByIdAndUpdate(args._id, args, {
+      const result = await Recipe.findByIdAndUpdate(args._id, args, {
         new: true,
       });
+
+      return await User.populate(result, { path: "author" });
     },
     deleteRecipe: async (parent, args) => {
       return await Recipe.findByIdAndDelete(args._id);
