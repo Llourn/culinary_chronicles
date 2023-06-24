@@ -9,6 +9,9 @@
   --warning: #ffd239;
   --light: #fafafa;
   --dark: #121212;
+
+  --input-focus-ring-color: #fafafa83;
+
   --container-size: 1350px;
 }
 
@@ -28,22 +31,29 @@ body {
   color: var(--primary);
 }
 
+main {
+  max-width: var(--container-size);
+  margin: auto;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Niramit", sans-serif;
   font-weight: 700;
 }
 
 h1 {
+  font-family: "Niramit", sans-serif;
   font-size: 2.25rem;
 }
 
 h2 {
   font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: var(--sl-letter-spacing-loose);
 }
 
 h3 {
@@ -75,4 +85,23 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+sl-input::part(base) {
+  --sl-input-border-color-focus: var(--primary);
+  --sl-input-focus-ring-color: var(--input-focus-ring-color);
+
+  outline-color: var(--primary);
+}
+
+sl-button::part(base) {
+  --sl-color-primary-600: var(--primary);
+  --sl-color-success-600: var(--success);
+  --sl-color-danger-600: var(--danger);
+  --sl-color-warning-600: var(--warning);
+
+  border-radius: 0px;
+  text-transform: uppercase;
+  letter-spacing: var(--sl-letter-spacing-looser);
+  text-indent: var(--sl-letter-spacing-looser);
 }
