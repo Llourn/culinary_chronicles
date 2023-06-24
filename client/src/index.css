@@ -1,12 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Niramit:wght@400;700&family=Roboto:wght@400;700&display=swap");
+
 :root {
-  --primary: #232F3E;
-  --secondary: #F3A847;
-  --tertiary: #B12704;
+  --primary: #fafafa;
+  --secondary: #f3a847;
+  --tertiary: #b12704;
+  --success: #26b559;
+  --danger: #bf2320;
+  --warning: #ffd239;
   --light: #fafafa;
-  --dark: #272f32;
-  --error: rgb(228, 46, 1);
-  --spacing-one: calc(1rem * 0.5);
-  --spacing-two: calc(1rem);
+  --dark: #121212;
+
+  --input-focus-ring-color: #fafafa83;
+
+  --container-size: 1350px;
 }
 
 * {
@@ -21,11 +27,13 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Karla', sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  font-size: 16px;
-  color: var(--dark);
+  font-family: "Roboto", sans-serif;
+  color: var(--primary);
+}
+
+main {
+  max-width: var(--container-size);
+  margin: auto;
 }
 
 h1,
@@ -34,18 +42,18 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 500;
-  margin: 5px 0;
-  line-height: 1.25;
+  font-weight: 700;
 }
 
 h1 {
+  font-family: "Niramit", sans-serif;
   font-size: 2.25rem;
 }
 
 h2 {
   font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: var(--sl-letter-spacing-loose);
 }
 
 h3 {
@@ -79,132 +87,21 @@ a:hover {
   text-decoration: underline;
 }
 
-header {
-  background: var(--primary);
+sl-input::part(base) {
+  --sl-input-border-color-focus: var(--primary);
+  --sl-input-focus-ring-color: var(--input-focus-ring-color);
+
+  outline-color: var(--primary);
 }
 
-header a {
-  color: var(--light);
-}
+sl-button::part(base) {
+  --sl-color-primary-600: var(--primary);
+  --sl-color-success-600: var(--success);
+  --sl-color-danger-600: var(--danger);
+  --sl-color-warning-600: var(--warning);
 
-button {
-  font-size: 1rem;
-  text-decoration: none;
-  padding: 0.25rem 1rem;
-  border-radius: .5rem;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  margin: 0 1px;
-  background-color: var(--secondary);
-}
-
-button:hover {
-  opacity: .8;
-}
-
-button[disabled] {
-  cursor: default;
-  opacity: .8;
-}
-
-img {
-  max-width: 100%;
-}
-
-span[role="img"] {
-  cursor: default;
-}
-
-form {
-  width: 40%;
-}
-
-input {
-  font-size: 1rem;
-  padding: 0.25rem;
-  border: 1px solid var(--dark);
-  outline: none;
-  border-radius: 3px;
-  transition: box-shadow 0.2s;
-}
-
-input:focus {
-  border: 1px solid var(--secondary);
-  box-shadow: 0 0 .25rem rgba(0, 0, 0, .5);
-}
-
-.container {
-  width: 85%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.flex-row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.space-between {
-  justify-content: space-between;
-}
-
-.flex-end {
-  justify-content: flex-end;
-}
-
-.mx-1 {
-  margin-right: var(--spacing-one);
-  margin-left: var(--spacing-one);
-}
-
-.mx-2 {
-  margin-right: var(--spacing-two);
-  margin-left: var(--spacing-two);
-}
-
-.my-1 {
-  margin-top: var(--spacing-one);
-  margin-bottom: var(--spacing-one);
-}
-
-.my-2 {
-  margin-top: var(--spacing-two);
-  margin-bottom: var(--spacing-two);
-}
-
-.px-1 {
-  padding-right: var(--spacing-one);
-  padding-left: var(--spacing-one);
-}
-
-.px-2 {
-  padding-right: var(--spacing-two);
-  padding-left: var(--spacing-two);
-}
-
-.py-1 {
-  padding-top: var(--spacing-one);
-  padding-bottom: var(--spacing-one);
-}
-
-.py-2 {
-  padding-top: var(--spacing-two);
-  padding-bottom: var(--spacing-two);
-}
-
-.card {
-  width: 25%;
-  text-align: center;
-}
-
-.error-text {
-  color: var(--error);
-}
-
-@media screen and (max-width: 768px) {
-  .card {
-    width: 100%;
-  }
+  border-radius: 0px;
+  text-transform: uppercase;
+  letter-spacing: var(--sl-letter-spacing-looser);
+  text-indent: var(--sl-letter-spacing-looser);
 }

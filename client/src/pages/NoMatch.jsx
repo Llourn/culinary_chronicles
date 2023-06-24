@@ -1,5 +1,6 @@
 import React from "react";
-import Button from "../components/Button";
+import { SlButton } from "@shoelace-style/shoelace/dist/react";
+
 import { useNavigate } from "react-router-dom";
 
 const NoMatch = () => {
@@ -8,7 +9,9 @@ const NoMatch = () => {
   return (
     <div className="container">
       <h1>This page does not exist</h1>
-      <Button handleClick={() => navigate("/")}>HOME</Button>
+      <SlButton onClick={() => navigate("/")} variant="primary" outline>
+        HOME
+      </SlButton>
     </div>
   );
 };
