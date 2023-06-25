@@ -55,11 +55,7 @@ const Card = (props) => {
         {props.ingredients}
         <br />
         {props.directions}
-        <SlButton
-          slot="footer"
-          variant="primary"
-          onClick={() => setOpen(false)}
-        >
+        <SlButton slot="footer" variant="dark" onClick={() => setOpen(false)}>
           Close
         </SlButton>
       </SlDialog>
