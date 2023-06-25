@@ -6,6 +6,9 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    bio: String
+    profilePicUrl: String
+    bannerUrl: String
   }
 
   type Recipe {
@@ -53,7 +56,9 @@ const typeDefs = gql`
       firstName: String
       lastName: String
       email: String
-      password: String
+      bio: String
+      profilePicUrl: String
+      bannerUrl: String
     ): User
     login(email: String!, password: String!): Auth
     addRecipe(
