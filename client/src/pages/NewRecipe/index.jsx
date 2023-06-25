@@ -8,11 +8,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./NewRecipe.module.css";
 
 const NewRecipe = (props) => {
-  const [ingredientsFields, setIngredientsFields] = useState([
-    { ingredient: "" },
-  ]);
-  const [directionsFields, setDirectionsFields] = useState([{ direction: "" }]);
-
+  const [ingredientsFields, setIngredientsFields] = useState([]);
+  const [directionsFields, setDirectionsFields] = useState([]);
   const [formState, setFormState] = useState({
     name: "",
     description: "",
@@ -25,6 +22,10 @@ const NewRecipe = (props) => {
     firstDirection: "",
   });
 
+  useEffect(() => {
+    document.title = props.title;
+  }, [props.title]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -33,31 +34,63 @@ const NewRecipe = (props) => {
     });
   };
 
-  const handleDynamicChange = (index, event) => {
-    let data = [...ingredientsFields];
-    data[index][event.target.name] = event.target.value;
-    setIngredientsFields(data);
-  };
+  const handleDynamicChange = (index, event, type) => {
+    if (type === "ingredients") {
+      let data = [...ingredientsFields];
+      data[index][event.target.name] = event.target.value;
 
-  useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+      setIngredientsFields(data);
+      console.log("ing", ingredientsFields);
+    } else if (type === "directions") {
+      let data = [...directionsFields];
+      data[index][event.target.name] = event.target.value;
+
+      setDirectionsFields(data);
+      console.log("dir", directionsFields);
+    }
+  };
 
   const handleCapture = (e) => {
     e.preventDefault();
-    console.log(formState.name);
+    let data = {
+      name: formState.name,
+      description: formState.description,
+      prepTime: formState.prepTime,
+      cookTime: formState.cookTime,
+      totalTime: formState.totalTime,
+      servings: formState.servings,
+      yield: formState.yield,
+      ingredients: [formState.firstIngredient, ...ingredientsFields],
+      directions: [formState.firstDirection, ...directionsFields],
+    };
+
+    console.log(data);
   };
 
-  const addIngredient = () => {
-    let newfield = { ingredient: "" };
+  const addElement = (type) => {
+    if (type === "ingredients") {
+      let newfield = { ingredient: "" };
 
-    setIngredientsFields([...ingredientsFields, newfield]);
+      setIngredientsFields([...ingredientsFields, newfield]);
+    } else if (type === "directions") {
+      let newfield = { direction: "" };
+
+      setDirectionsFields([...directionsFields, newfield]);
+    }
   };
 
-  const removeIngredient = (index) => {
-    let data = [...ingredientsFields];
-    data.splice(index, 1);
-    setIngredientsFields(data);
+  const removeIngredient = (index, type) => {
+    if (type === "ingredients") {
+      let data = [...ingredientsFields];
+      data.splice(index, 1);
+
+      setIngredientsFields(data);
+    } else if (type === "directions") {
+      let data = [...directionsFields];
+      data.splice(index, 1);
+
+      setDirectionsFields(data);
+    }
   };
 
   return (
@@ -79,7 +112,13 @@ const NewRecipe = (props) => {
           onSlInput={handleChange}
         />
         <br />
-        <div className={styles.firstIngredient}>
+        <div className={styles.leadingElement}>
+          <SlIconButton
+            name="plus-square"
+            label="ingredient"
+            style={{ fontSize: "1rem" }}
+            onClick={() => addElement("ingredients")}
+          />
           <SlInput
             label="Ingredients"
             name="firstIngredient"
@@ -87,27 +126,21 @@ const NewRecipe = (props) => {
             value={formState.firstIngredient}
             onSlInput={handleChange}
           />
-          <SlIconButton
-            name="plus-square"
-            label="ingredient"
-            style={{ fontSize: "1rem" }}
-            onClick={addIngredient}
-          />
         </div>
         {ingredientsFields.map((input, index) => {
           return (
-            <div className={styles.ingredientField} key={index}>
+            <div className={styles.dynamicField} key={index}>
               <SlInput
                 name="ingredient"
                 required
                 value={input.ingredient}
-                onSlInput={(e) => handleDynamicChange(index, e)}
+                onSlInput={(e) => handleDynamicChange(index, e, "ingredients")}
               />
               <SlIconButton
                 name="x-square"
                 label="ingredient"
                 style={{ fontSize: "1.5rem" }}
-                onClick={() => removeIngredient(index)}
+                onClick={() => removeIngredient(index, "ingredients")}
               />
             </div>
           );
@@ -153,18 +186,56 @@ const NewRecipe = (props) => {
           onSlInput={handleChange}
         />
         <br />
-        <SlInput
-          label="Directions"
-          name="firstDirection"
-          required
-          value={formState.firstDirection}
-          onSlInput={handleChange}
-        />
+        <div className={styles.leadingElement}>
+          <SlIconButton
+            name="plus-square"
+            label="add element"
+            style={{ fontSize: "1rem" }}
+            onClick={() => addElement("directions")}
+          />
+          <SlTextarea
+            label="Directions"
+            name="firstDirection"
+            required
+            value={formState.firstDirection}
+            onSlInput={handleChange}
+          />
+        </div>
+        {directionsFields.map((input, index) => {
+          return (
+            <div className={styles.dynamicField} key={index}>
+              <SlTextarea
+                name="direction"
+                required
+                value={input.direction}
+                onSlInput={(e) => handleDynamicChange(index, e, "directions")}
+              />
+              <SlIconButton
+                name="x-square"
+                label="ingredient"
+                style={{ fontSize: "1.5rem" }}
+                onClick={() => removeIngredient(index, "directions")}
+              />
+            </div>
+          );
+        })}
         <br />
         <SlButton type="submit" variant="primary" outline>
           Create Recipe
         </SlButton>
       </form>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 };

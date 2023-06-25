@@ -1,22 +1,27 @@
-.ingredientField {
+.dynamicField {
   padding-top: 0.25rem;
   display: flex;
 }
 
-.ingredientField sl-input {
+.dynamicField sl-input,
+.dynamicField sl-textarea {
   flex-basis: 100%;
 }
 
-.ingredientField sl-icon-button::part(base):hover,
-.firstIngredient sl-icon-button::part(base):hover {
+.dynamicField sl-icon-button::part(base):hover,
+.leadingElement sl-icon-button::part(base):hover,
+.dynamicField sl-icon-button::part(base):focus-visible,
+.leadingElement sl-icon-button::part(base):focus-visible {
   color: var(--primary);
+  outline-color: var(--primary);
+  outline-offset: -5px;
 }
 
-.firstIngredient {
+.leadingElement {
   position: relative;
 }
 
-.firstIngredient sl-icon-button {
+.leadingElement sl-icon-button {
   position: absolute;
   right: 0;
   top: 0;
