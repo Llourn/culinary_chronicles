@@ -2,66 +2,69 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const recipeSchema = new Schema({
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-    minlength: 10,
-    maxlength: 500,
-  },
-  prepTime: {
-    type: String,
-    required: true,
-  },
-  cookTime: {
-    type: String,
-    required: true,
-  },
-  totalTime: {
-    type: String,
-    required: true,
-  },
-  servings: {
-    type: Number,
-    required: true,
-  },
-  yield: {
-    type: String,
-    required: true,
-  },
-  ingredients: [
-    {
+const recipeSchema = new Schema(
+  {
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    name: {
       type: String,
       required: true,
     },
-  ],
-  directions: [
-    {
+    description: {
+      type: String,
+      required: true,
+      minlength: 10,
+      maxlength: 500,
+    },
+    prepTime: {
       type: String,
       required: true,
     },
-  ],
-  image: {
-    data: Buffer,
-    contentType: String,
+    cookTime: {
+      type: String,
+      required: true,
+    },
+    totalTime: {
+      type: String,
+      required: true,
+    },
+    servings: {
+      type: Number,
+      required: true,
+    },
+    yield: {
+      type: String,
+      required: true,
+    },
+    ingredients: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    directions: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    image: {
+      data: Buffer,
+      contentType: String,
+    },
+    tags: [
+      {
+        type: String,
+        required: true,
+        default: "other",
+        options: ["breakfast", "lunch", "dinner", "dessert", "snack", "other"],
+      },
+    ],
   },
-  tags: [
-    {
-      type: String,
-      required: true,
-      default: "other",
-      options: ["breakfast", "lunch", "dinner", "dessert", "snack", "other"],
-    },
-  ],
-});
+  { timestamps: true }
+);
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
 
