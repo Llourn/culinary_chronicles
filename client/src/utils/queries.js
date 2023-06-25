@@ -47,3 +47,26 @@ export const QUERY_RECIPE_LIKE_COUNT = gql`
     recipeLikes(recipeId: $recipeId)
   }
 `;
+
+export const QUERY_RECIPE_BY_ID = gql`
+  query RecipeById($recipeId: ID) {
+    recipeById(recipeId: $recipeId) {
+      author {
+        _id
+        firstName
+        lastName
+      }
+      name
+      description
+      prepTime
+      cookTime
+      totalTime
+      servings
+      yield
+      ingredients
+      directions
+      image
+      tags
+    }
+  }
+`;
