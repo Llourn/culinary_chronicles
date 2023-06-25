@@ -22,9 +22,17 @@ const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
 
-  const { data } = useQuery(QUERY_RECIPE_BY_ID);
-  let recipe = data?.recipe || {};
-  let author = data?.recipe.author || {};
+  const { data } = useQuery(QUERY_RECIPE_BY_ID, {
+    variables: { recipeId: recipe._id },
+  });
+
+  let recipe;
+  let author;
+
+  if (data) {
+    recipe = data.recipe;
+    author = data.recipe.author;
+  }
 
   return (
     <SlCard className={styles.cardOverview}>
