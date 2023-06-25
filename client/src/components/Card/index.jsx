@@ -7,6 +7,9 @@ import {
 } from "@shoelace-style/shoelace/dist/react";
 import styles from "./Card.module.css";
 
+import { useQuery } from "@apollo/client";
+import { QUERY_RECIPE_BY_ID } from "../utils/queries";
+
 const Card = ({
   name,
   firstName,
@@ -19,6 +22,9 @@ const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
 
+  const { data } = useQuery(QUERY_RECIPE_BY_ID);
+  let recipe = data?.recipe || {};
+
   return (
     <SlCard className={styles.cardOverview}>
       <img
@@ -26,26 +32,18 @@ const Card = ({
         src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
         slot="image"
       />
-      <strong>{name}Placeholder</strong>
+      <strong>{recipe.name}</strong>
       <br />
-      <small>{`${firstName} ${lastName}`}</small>
+      <small>{`${author.firstName} ${author.lastName}`}</small>
       <br />
-      {description}
-      some description goes here this is just a placeholder dont worry about
-      this just taking space to test
+      {recipe.description}
       <br />
-      <small>{createdAt}Created at placeholder 420:69:10</small>
+      <small>{recipe.createdAt}</small>
       <div slot="footer">
         <SlButton variant="dark" onClick={() => setOpen(true)}>
           SEE RECIPE
         </SlButton>
-        <p>Total likes: 69{likes}</p>
-        {likes}
-        <SlRating
-          label="Rating"
-          getSymbol={() => '<sl-icon name="hand-thumbs-up-fill"></sl-icon>'}
-          max={1}
-        ></SlRating>
+        <p>{recipe.likes}</p>
       </div>
       <SlDialog
         label="Recipe"
@@ -53,17 +51,24 @@ const Card = ({
         style={{ "--width": "50vw" }}
         onSlAfterHide={() => setOpen(false)}
       >
-        <strong>{name}Placeholder</strong>
+        <strong>{recipe.name}</strong>
         <br />
-        <small>{`${firstName} ${lastName}`}</small>
+        <small>{`${author.firstName} ${author.lastName}`}</small>
         <br />
-        {description}
-        some description goes here this is just a placeholder dont worry about
-        this just taking space to test
+        {recipe.description}
         <br />
-        {ingredients}
+        {recipe.ingredients.map((ingredient) => (
+          <p>{ingredient}</p>
+        ))}
         <br />
-        {directions}
+        {recipe.directions.map((direction) => (
+          <p>{direction}</p>
+        ))}
+        <SlRating
+          label="Rating"
+          getSymbol={() => '<sl-icon name="hand-thumbs-up-fill"></sl-icon>'}
+          max={1}
+        ></SlRating>
         <SlButton slot="footer" variant="dark" onClick={() => setOpen(false)}>
           Close
         </SlButton>
