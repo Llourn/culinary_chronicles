@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SlButton,
   SlCard,
   SlRating,
+  SlDialog,
 } from "@shoelace-style/shoelace/dist/react";
 import styles from "./Card.module.css";
 
 const Card = (props) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <SlCard className={styles.cardOverview}>
       <img
@@ -24,7 +27,7 @@ const Card = (props) => {
       <br />
       <small>{props.createdAt}Created at placeholder 420:69:10</small>
       <div slot="footer">
-        <SlButton variant="dark" onClick={props.viewRecipe}>
+        <SlButton variant="dark" onClick={() => setOpen(true)}>
           SEE RECIPE
         </SlButton>
         <p>Total likes: 69{props.likes}</p>
@@ -35,6 +38,31 @@ const Card = (props) => {
           max={1}
         ></SlRating>
       </div>
+      <SlDialog
+        label="Recipe"
+        open={open}
+        style={{ "--width": "50vw" }}
+        onSlAfterHide={() => setOpen(false)}
+      >
+        <strong>{props.name}Placeholder</strong>
+        <br />
+        <small>{`${props.firstName} ${props.lastName}`}</small>
+        <br />
+        {props.description}
+        some description goes here this is just a placeholder dont worry about
+        this just taking space to test
+        <br />
+        {props.ingredients}
+        <br />
+        {props.directions}
+        <SlButton
+          slot="footer"
+          variant="primary"
+          onClick={() => setOpen(false)}
+        >
+          Close
+        </SlButton>
+      </SlDialog>
     </SlCard>
   );
 };
