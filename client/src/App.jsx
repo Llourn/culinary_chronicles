@@ -16,8 +16,8 @@ import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Test from "./pages/Test";
-import Nav from "./components/Nav/Nav";
-import Footer from "./components/Footer/Footer";
+import Nav from "./components/Nav/index";
+import Footer from "./components/Footer/index";
 import NewRecipe from "./pages/NewRecipe";
 
 setBasePath(
