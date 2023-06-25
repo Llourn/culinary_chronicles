@@ -21,7 +21,6 @@ const Card = (props) => {
       <small>{props.createdAt}</small>
       <div slot="footer">
         <SlButton variant="dark">SEE RECIPE</SlButton>
-        <SlRating value={props.rating} max={5} readOnly></SlRating>
       </div>
     </SlCard>
   );

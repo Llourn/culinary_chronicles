@@ -25,7 +25,6 @@ const typeDefs = gql`
     directions: [String]
     image: String
     tags: [String]
-    rating: Int
   }
 
   type LikedRecipe {
