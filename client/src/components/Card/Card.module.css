@@ -16,7 +16,7 @@
   width: 90%;
   margin: 0 auto;
   margin-top: 0.5rem;
-  border-radius: 0.25rem;
+  border-radius: var(--sl-border-radius-medium);
 }
 
 .cardOverview p {
