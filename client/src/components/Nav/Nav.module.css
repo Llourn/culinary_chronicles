@@ -4,3 +4,9 @@
   border-bottom-color: white;
 }
 
+.group {
+  position: sticky;
+  top: 0;
+  background-color: var(--dark);
+  z-index: 1000;
+}
