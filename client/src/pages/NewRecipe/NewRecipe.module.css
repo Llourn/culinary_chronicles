@@ -1,0 +1,24 @@
+.ingredientField {
+  padding-top: 0.25rem;
+  display: flex;
+}
+
+.ingredientField sl-input {
+  flex-basis: 100%;
+}
+
+.ingredientField sl-icon-button::part(base):hover,
+.firstIngredient sl-icon-button::part(base):hover {
+  color: var(--primary);
+}
+
+.firstIngredient {
+  position: relative;
+}
+
+.firstIngredient sl-icon-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-20%);
+}

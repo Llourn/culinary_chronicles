@@ -87,11 +87,18 @@ a:hover {
   text-decoration: underline;
 }
 
-sl-input::part(base) {
+sl-input::part(base),
+sl-textarea::part(base) {
   --sl-input-border-color-focus: var(--primary);
   --sl-input-focus-ring-color: var(--input-focus-ring-color);
 
   outline-color: var(--primary);
+}
+
+sl-input::part(form-control-label),
+sl-textarea::part(form-control-label) {
+  text-transform: uppercase;
+  margin-bottom: 5px;
 }
 
 sl-button::part(base) {
