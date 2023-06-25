@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../../utils/mutations";
@@ -10,6 +10,10 @@ import { SlButton, SlInput } from "@shoelace-style/shoelace/dist/react";
 function Login(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login] = useMutation(LOGIN);
+
+  useEffect(() => {
+    document.title = props.title;
+  }, [props.title]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -40,8 +44,8 @@ function Login(props) {
         src="./images/welcome-back-login.jpg"
         alt="welcome sign"
       />
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
+      <h2 className="i-pd-1rem">Login</h2>
+      <form className="i-pd-1rem" onSubmit={handleFormSubmit}>
         <SlInput
           label="Email"
           placeholder="norm@oscorp.com"

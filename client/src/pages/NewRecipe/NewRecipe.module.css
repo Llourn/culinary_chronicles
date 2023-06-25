@@ -1,0 +1,51 @@
+.dynamicField {
+  padding-top: 0.25rem;
+  display: flex;
+}
+
+.dynamicField sl-input,
+.dynamicField sl-textarea {
+  flex-basis: 100%;
+}
+
+.dynamicField sl-icon-button::part(base):hover,
+.leadingElement sl-icon-button::part(base):hover,
+.dynamicField sl-icon-button::part(base):focus-visible,
+.leadingElement sl-icon-button::part(base):focus-visible {
+  color: var(--primary);
+  outline-color: var(--primary);
+  outline-offset: -5px;
+}
+
+.leadingElement {
+  position: relative;
+}
+
+.leadingElement sl-icon-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-20%);
+}
+
+.form {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.firstGroup,
+.secondGroup {
+  width: 50%;
+  flex: 1 0 300px;
+}
+
+.infoGroup {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+}
+
+.infoGroup div {
+  flex-grow: 1;
+}

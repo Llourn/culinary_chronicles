@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SlButton } from "@shoelace-style/shoelace/dist/react";
 
 import { useNavigate } from "react-router-dom";
 
-const NoMatch = () => {
+const NoMatch = (props) => {
   const navigate = useNavigate();
+  useEffect(() => {
+    document.title = props.title;
+  }, [props.title]);
 
   return (
     <div className="container">
