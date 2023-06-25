@@ -13,13 +13,13 @@ const typeDefs = gql`
 
   type Recipe {
     _id: ID
-    author: User!
+    author: User
     name: String
     description: String
     prepTime: String
     cookTime: String
     totalTime: String
-    servings: Int
+    servings: String
     yield: String
     ingredients: [String]
     directions: [String]
@@ -64,18 +64,18 @@ const typeDefs = gql`
     ): User
     login(email: String!, password: String!): Auth
     addRecipe(
-      author: ID!
-      name: String!
-      description: String!
-      prepTime: String!
-      cookTime: String!
-      totalTime: String!
-      servings: Int!
-      yield: String!
-      ingredients: [String]!
-      directions: [String]!
+      author: ID
+      name: String
+      description: String
+      prepTime: String
+      cookTime: String
+      totalTime: String
+      servings: String
+      yield: String
+      ingredients: [String]
+      directions: [String]
       image: String
-      tags: [String]!
+      tags: [String]
     ): Recipe
     updateRecipe(
       _id: ID!
