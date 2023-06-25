@@ -24,6 +24,7 @@ const Card = ({
 
   const { data } = useQuery(QUERY_RECIPE_BY_ID);
   let recipe = data?.recipe || {};
+  let author = data?.recipe.author || {};
 
   return (
     <SlCard className={styles.cardOverview}>
