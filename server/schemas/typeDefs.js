@@ -40,6 +40,8 @@ const typeDefs = gql`
 
   type Query {
     user: User
+    userById(userId: ID): User
+    recipeById(recipeId: ID): Recipe
     recipes(name: String, tags: [String]): [Recipe]
     likedRecipes(userId: ID): [Recipe]
     recipeLikes(recipeId: ID): Int

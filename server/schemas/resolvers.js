@@ -13,6 +13,10 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    userById: async (parent, args, context) => {
+      const user = await User.findById(args.userId).select("-email");
+      return user;
+    },
     recipes: async (parent, args) => {
       const result = await Recipe.find({
         //or operator to find recipes with tags or name
@@ -21,6 +25,11 @@ const resolvers = {
       });
 
       return await User.populate(result, { path: "author" });
+    },
+    recipeById: async (parent, args) => {
+      const result = await Recipe.findById(args.recipeId);
+
+      return await User.populate(result, { path: "author", select: "-email" });
     },
     likedRecipes: async (parent, args) => {
       const result = await LikedRecipe.aggregate([

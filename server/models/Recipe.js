@@ -50,8 +50,7 @@ const recipeSchema = new Schema({
     },
   ],
   image: {
-    data: Buffer,
-    contentType: String,
+    type: String,
   },
   tags: [
     {
