@@ -12,6 +12,7 @@ const NewRecipe = (props) => {
   const [directionsFields, setDirectionsFields] = useState([]);
   const [formState, setFormState] = useState({
     name: "",
+    image: "",
     description: "",
     firstIngredient: "",
     prepTime: "",
@@ -37,16 +38,14 @@ const NewRecipe = (props) => {
   const handleDynamicChange = (index, event, type) => {
     if (type === "ingredients") {
       let data = [...ingredientsFields];
-      data[index][event.target.name] = event.target.value;
+      data[index] = event.target.value;
 
       setIngredientsFields(data);
-      console.log("ing", ingredientsFields);
     } else if (type === "directions") {
       let data = [...directionsFields];
-      data[index][event.target.name] = event.target.value;
+      data[index] = event.target.value;
 
       setDirectionsFields(data);
-      console.log("dir", directionsFields);
     }
   };
 
@@ -54,6 +53,7 @@ const NewRecipe = (props) => {
     e.preventDefault();
     let data = {
       name: formState.name,
+      image: formState.image,
       description: formState.description,
       prepTime: formState.prepTime,
       cookTime: formState.cookTime,
@@ -69,11 +69,11 @@ const NewRecipe = (props) => {
 
   const addElement = (type) => {
     if (type === "ingredients") {
-      let newfield = { ingredient: "" };
+      let newfield = [""];
 
       setIngredientsFields([...ingredientsFields, newfield]);
     } else if (type === "directions") {
-      let newfield = { direction: "" };
+      let newfield = [""];
 
       setDirectionsFields([...directionsFields, newfield]);
     }
@@ -94,135 +94,160 @@ const NewRecipe = (props) => {
   };
 
   return (
-    <>
+    <div className="i-pd-1rem">
       <h1>New Recipe</h1>
-      <form onSubmit={handleCapture}>
-        <SlInput
-          label="Name"
-          name="name"
-          required
-          value={formState.name}
-          onSlInput={handleChange}
-        />
-        <br />
-        <SlTextarea
-          label="Description"
-          name="description"
-          value={formState.description}
-          onSlInput={handleChange}
-        />
-        <br />
-        <div className={styles.leadingElement}>
-          <SlIconButton
-            name="plus-square"
-            label="ingredient"
-            style={{ fontSize: "1rem" }}
-            onClick={() => addElement("ingredients")}
-          />
+      <form onSubmit={handleCapture} className={styles.form}>
+        <div className={styles.firstGroup}>
           <SlInput
-            label="Ingredients"
-            name="firstIngredient"
+            label="Name"
+            name="name"
             required
-            value={formState.firstIngredient}
+            value={formState.name}
             onSlInput={handleChange}
           />
-        </div>
-        {ingredientsFields.map((input, index) => {
-          return (
-            <div className={styles.dynamicField} key={index}>
-              <SlInput
-                name="ingredient"
-                required
-                value={input.ingredient}
-                onSlInput={(e) => handleDynamicChange(index, e, "ingredients")}
-              />
-              <SlIconButton
-                name="x-square"
-                label="ingredient"
-                style={{ fontSize: "1.5rem" }}
-                onClick={() => removeIngredient(index, "ingredients")}
-              />
-            </div>
-          );
-        })}
-        <br />
-        <SlInput
-          label="Prep Time"
-          name="prepTime"
-          required
-          value={formState.prepTime}
-          onSlInput={handleChange}
-        />
-        <br />
-        <SlInput
-          label="Cook Time"
-          name="cookTime"
-          required
-          value={formState.cookTime}
-          onSlInput={handleChange}
-        />
-        <br />
-        <SlInput
-          label="Total Time"
-          name="totalTime"
-          required
-          value={formState.totalTime}
-          onSlInput={handleChange}
-        />
-        <br />
-        <SlInput
-          label="Servings"
-          name="servings"
-          required
-          value={formState.servings}
-          onSlInput={handleChange}
-        />
-        <br />
-        <SlInput
-          label="Yield"
-          name="yield"
-          required
-          value={formState.yield}
-          onSlInput={handleChange}
-        />
-        <br />
-        <div className={styles.leadingElement}>
-          <SlIconButton
-            name="plus-square"
-            label="add element"
-            style={{ fontSize: "1rem" }}
-            onClick={() => addElement("directions")}
+          <br />
+          <SlInput
+            label="Image (url)"
+            name="image"
+            value={formState.image}
+            onSlInput={handleChange}
           />
+          <br />
           <SlTextarea
-            label="Directions"
-            name="firstDirection"
-            required
-            value={formState.firstDirection}
+            label="Description"
+            name="description"
+            value={formState.description}
             onSlInput={handleChange}
           />
+          <br />
+          <div className={styles.leadingElement}>
+            <SlIconButton
+              name="plus-square"
+              label="ingredient"
+              style={{ fontSize: "1rem" }}
+              onClick={() => addElement("ingredients")}
+            />
+            <SlInput
+              label="Ingredients"
+              name="firstIngredient"
+              required
+              value={formState.firstIngredient}
+              onSlInput={handleChange}
+            />
+          </div>
+          {ingredientsFields.map((input, index) => {
+            return (
+              <div className={styles.dynamicField} key={index}>
+                <SlInput
+                  name="ingredient"
+                  required
+                  value={input}
+                  onSlInput={(e) =>
+                    handleDynamicChange(index, e, "ingredients")
+                  }
+                />
+                <SlIconButton
+                  name="x-square"
+                  label="ingredient"
+                  style={{ fontSize: "1.5rem" }}
+                  onClick={() => removeIngredient(index, "ingredients")}
+                />
+              </div>
+            );
+          })}
+          <br />
         </div>
-        {directionsFields.map((input, index) => {
-          return (
-            <div className={styles.dynamicField} key={index}>
-              <SlTextarea
-                name="direction"
+        <div className={styles.secondGroup}>
+          <div className={styles.infoGroup}>
+            <div>
+              <SlInput
+                label="Prep Time"
+                name="prepTime"
                 required
-                value={input.direction}
-                onSlInput={(e) => handleDynamicChange(index, e, "directions")}
+                value={formState.prepTime}
+                onSlInput={handleChange}
               />
-              <SlIconButton
-                name="x-square"
-                label="ingredient"
-                style={{ fontSize: "1.5rem" }}
-                onClick={() => removeIngredient(index, "directions")}
-              />
+              <br />
             </div>
-          );
-        })}
-        <br />
-        <SlButton type="submit" variant="primary" outline>
-          Create Recipe
-        </SlButton>
+            <div>
+              <SlInput
+                label="Cook Time"
+                name="cookTime"
+                required
+                value={formState.cookTime}
+                onSlInput={handleChange}
+              />
+              <br />
+            </div>
+            <div>
+              <SlInput
+                label="Total Time"
+                name="totalTime"
+                required
+                value={formState.totalTime}
+                onSlInput={handleChange}
+              />
+              <br />
+            </div>
+            <div>
+              <SlInput
+                label="Servings"
+                name="servings"
+                required
+                value={formState.servings}
+                onSlInput={handleChange}
+              />
+              <br />
+            </div>
+            <div>
+              <SlInput
+                label="Yield"
+                name="yield"
+                required
+                value={formState.yield}
+                onSlInput={handleChange}
+              />
+              <br />
+            </div>
+          </div>
+          <div className={styles.leadingElement}>
+            <SlIconButton
+              name="plus-square"
+              label="add element"
+              style={{ fontSize: "1rem" }}
+              onClick={() => addElement("directions")}
+            />
+            <SlTextarea
+              label="Directions"
+              name="firstDirection"
+              required
+              value={formState.firstDirection}
+              onSlInput={handleChange}
+            />
+          </div>
+          {directionsFields.map((input, index) => {
+            return (
+              <div className={styles.dynamicField} key={index}>
+                <SlTextarea
+                  name="direction"
+                  required
+                  value={input}
+                  onSlInput={(e) => handleDynamicChange(index, e, "directions")}
+                />
+                <SlIconButton
+                  name="x-square"
+                  label="ingredient"
+                  style={{ fontSize: "1.5rem" }}
+                  onClick={() => removeIngredient(index, "directions")}
+                />
+              </div>
+            );
+          })}
+          <br />
+          <SlButton type="submit" variant="primary" outline>
+            Create Recipe
+          </SlButton>
+        </div>
       </form>
       <br />
       <br />
@@ -236,7 +261,7 @@ const NewRecipe = (props) => {
       <br />
       <br />
       <br />
-    </>
+    </div>
   );
 };
 

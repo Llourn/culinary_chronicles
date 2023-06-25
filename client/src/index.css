@@ -112,3 +112,7 @@ sl-button::part(base) {
   letter-spacing: var(--sl-letter-spacing-looser);
   text-indent: var(--sl-letter-spacing-looser);
 }
+
+.i-pd-1rem {
+  padding-inline: 1rem;
+}
