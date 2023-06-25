@@ -62,8 +62,13 @@ const recipeSchema = new Schema(
         options: ["breakfast", "lunch", "dinner", "dessert", "snack", "other"],
       },
     ],
+    rating: {
+      type: Number,
+      max: 5,
+    },
   },
-  { timestamps: true }
+  { timestamps: true } // Allows you to use createdAt and updatedAt, might be useful for sorting
+  // createdAt happens as soon as something is created, updatedAt is changed on every save(), updateOne(), updateMany(), findOneAndUpdate(), update(), replaceOne(), and/or bulkWrite()
 );
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
