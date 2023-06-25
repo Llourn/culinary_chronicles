@@ -14,7 +14,7 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_USER_BY_ID = gql`
-  {
+  query Query($userId: ID) {
     userById(userId: $userId) {
       _id
       firstName
@@ -27,7 +27,7 @@ export const QUERY_USER_BY_ID = gql`
 `;
 
 export const QUERY_USERS_LIKED_RECIPES = gql`
-  {
+  query Query($userId: ID) {
     likedRecipes(userId: $userId) {
       _id
       author {
@@ -43,7 +43,7 @@ export const QUERY_USERS_LIKED_RECIPES = gql`
 `;
 
 export const QUERY_RECIPE_LIKE_COUNT = gql`
-  {
+  query Query($recipeId: ID) {
     recipeLikes(recipeId: $recipeId)
   }
 `;

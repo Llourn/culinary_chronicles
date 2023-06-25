@@ -1,17 +1,20 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { QUERY_RECIPE_BY_ID } from "../utils/queries";
+import { QUERY_USERS_LIKED_RECIPES } from "../utils/queries";
 import { SlSpinner } from "@shoelace-style/shoelace/dist/react";
 
 const Test = () => {
   const recipeId = "6498896d9b5208d7dabad308";
-  const { loading, data } = useQuery(QUERY_RECIPE_BY_ID, {
-    variables: { recipeId },
+  const userId = "6498896d9b5208d7dabad300";
+  const { loading, data } = useQuery(QUERY_USERS_LIKED_RECIPES, {
+    variables: { userId },
   });
-  let recipe;
+  let recipes;
 
   if (data) {
-    recipe = data.recipeById;
+    console.log(data);
+    recipes = data.likedRecipes;
+    console.log(recipes);
   }
 
   return (
@@ -26,7 +29,7 @@ const Test = () => {
           }}
         />
       ) : (
-        <p>{recipe.name}</p>
+        <p>{JSON.stringify(recipes)}</p>
       )}
       <h1>Test</h1>
       <SlSpinner
