@@ -44,9 +44,9 @@ function Signup(props) {
         src="./images/welcome-signup.jpg"
         alt="welcome sign"
       />
-      <h2>Sign Up</h2>
+      <h2 className="i-pd-1rem">Sign Up</h2>
 
-      <form onSubmit={handleFormSubmit}>
+      <form className="i-pd-1rem" onSubmit={handleFormSubmit}>
         <SlInput
           label="First Name"
           name="firstName"

@@ -44,8 +44,8 @@ function Login(props) {
         src="./images/welcome-back-login.jpg"
         alt="welcome sign"
       />
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
+      <h2 className="i-pd-1rem">Login</h2>
+      <form className="i-pd-1rem" onSubmit={handleFormSubmit}>
         <SlInput
           label="Email"
           placeholder="norm@oscorp.com"
