@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
@@ -10,6 +10,10 @@ import styles from "./Signup.module.css";
 function Signup(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [addUser] = useMutation(ADD_USER);
+
+  useEffect(() => {
+    document.title = props.title;
+  }, [props.title]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
