@@ -6,6 +6,8 @@ import {
 } from "@shoelace-style/shoelace/dist/react";
 import React, { useEffect, useState } from "react";
 import styles from "./NewRecipe.module.css";
+import { useMutation } from "@apollo/client";
+import { ADD_RECIPE } from "../../utils/mutations";
 
 const NewRecipe = (props) => {
   const [ingredientsFields, setIngredientsFields] = useState([]);
@@ -22,6 +24,8 @@ const NewRecipe = (props) => {
     yield: "",
     firstDirection: "",
   });
+
+  const [addRecipe] = useMutation(ADD_RECIPE);
 
   useEffect(() => {
     document.title = props.title;
@@ -49,9 +53,9 @@ const NewRecipe = (props) => {
     }
   };
 
-  const handleCapture = (e) => {
+  const handleCapture = async (e) => {
     e.preventDefault();
-    let data = {
+    let newData = {
       name: formState.name,
       image: formState.image,
       description: formState.description,
@@ -64,7 +68,22 @@ const NewRecipe = (props) => {
       directions: [formState.firstDirection, ...directionsFields],
     };
 
-    console.log(data);
+    const mutationResponse = await addRecipe({
+      variables: {
+        name: "This is a new recipe name",
+        image: "this is an image!",
+        description: "This is a description!",
+        prepTime: "preptime yo",
+        cookTime: "cook times",
+        totalTime: "alll times",
+        servings: "surfs up",
+        yield: "YIUIIIEIIIELT",
+        ingredients: ["this is the first one", "this is the second one"],
+        directions: ["D this is the first one", "D this is the second one"],
+      },
+    });
+
+    console.log(mutationResponse.data.addRecipe._id);
   };
 
   const addElement = (type) => {
