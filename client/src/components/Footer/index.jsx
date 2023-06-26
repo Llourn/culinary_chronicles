@@ -7,7 +7,11 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       {`©️ Culinary Chronicles™️ ${year}`}{" "}
-      <a target="_blank" href="https://github.com/Llourn/culinary_chronicles">
+      <a
+        target="_blank"
+        href="https://github.com/Llourn/culinary_chronicles"
+        rel="noreferrer"
+      >
         <FaGithub />
       </a>
     </footer>
