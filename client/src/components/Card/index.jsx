@@ -20,6 +20,8 @@ const Card = ({
   directions,
 }) => {
   const [open, setOpen] = useState(false);
+  let dirCount = 0;
+  let ingCount = 0;
 
   return (
     <SlCard className={styles.cardOverview}>
@@ -42,6 +44,7 @@ const Card = ({
         <p>{likes}</p>
       </div>
       <SlDialog
+        className={styles.dialog}
         label={name}
         open={open}
         style={{ "--width": "50vw" }}
@@ -57,24 +60,25 @@ const Card = ({
         <br />
         {description}
         <SlDivider />
+        <h4>Ingredients</h4>
         {ingredients?.map((ingredient) => (
-          <p key={ingredient}>
-            <br />
-            {ingredient}
+          <p key={ingredient} className={styles.dialogP}>
+            {`${++ingCount}. ${ingredient}`}
           </p>
         ))}
         <SlDivider />
+        <h4>Directions</h4>
         {directions?.map((direction) => (
-          <p key={direction}>
-            <br />
-            {direction}
+          <p key={direction} className={styles.dialogP}>
+            {`${++dirCount}. ${direction}`}
           </p>
         ))}
+        {/* this was for liking the recipe, currently killed because Lorne said so
         <SlRating
           label="Rating"
           getSymbol={() => '<sl-icon name="hand-thumbs-up-fill"></sl-icon>'}
           max={1}
-        ></SlRating>
+        ></SlRating> */}
         <SlButton slot="footer" variant="dark" onClick={() => setOpen(false)}>
           Close
         </SlButton>
