@@ -85,7 +85,7 @@ function Signup(props) {
           onSlInput={handleChange}
           required
           defaultValue=""
-          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+          // pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
           helpText="Min. 8 characters, at least 1 uppercase, lowercase, number and special character"
         />
         <br />
