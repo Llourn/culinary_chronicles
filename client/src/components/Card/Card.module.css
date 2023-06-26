@@ -28,11 +28,14 @@
 
 img.dialogImage {
   display: block;
-  width: 50%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
   padding-top: 0;
+  max-height: 10rem;
+  object-position: center;
+  object-fit: cover;
 }
 
 /* .tomato-button::part(base):active {
