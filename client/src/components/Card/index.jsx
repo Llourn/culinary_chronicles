@@ -5,6 +5,7 @@ import {
   SlCard,
   SlRating,
   SlDialog,
+  SlDivider,
 } from "@shoelace-style/shoelace/dist/react";
 import styles from "./Card.module.css";
 
@@ -51,16 +52,16 @@ const Card = ({
         <small>{`${firstName} ${lastName}`}</small>
         <br />
         {description}
-        <br />
+        <SlDivider />
         {ingredients?.map((ingredient) => (
-          <p>
+          <p key={ingredient}>
             <br />
             {ingredient}
           </p>
         ))}
-        <br />
+        <SlDivider />
         {directions?.map((direction) => (
-          <p>
+          <p key={direction}>
             <br />
             {direction}
           </p>
