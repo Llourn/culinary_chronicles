@@ -69,19 +69,22 @@ const NewRecipe = (props) => {
     };
 
     const mutationResponse = await addRecipe({
-      variables: {
-        name: "This is a new recipe name",
-        image: "this is an image!",
-        description: "This is a description!",
-        prepTime: "preptime yo",
-        cookTime: "cook times",
-        totalTime: "alll times",
-        servings: "surfs up",
-        yield: "YIUIIIEIIIELT",
-        ingredients: ["this is the first one", "this is the second one"],
-        directions: ["D this is the first one", "D this is the second one"],
-      },
+      variables: newData,
     });
+    // const mutationResponse = await addRecipe({
+    //   variables: {
+    //     name: "This is a new recipe name",
+    //     image: "this is an image!",
+    //     description: "This is a description!",
+    //     prepTime: "preptime yo",
+    //     cookTime: "cook times",
+    //     totalTime: "alll times",
+    //     servings: "surfs up",
+    //     yield: "YIUIIIEIIIELT",
+    //     ingredients: ["this is the first one", "this is the second one"],
+    //     directions: ["D this is the first one", "D this is the second one"],
+    //   },
+    // });
 
     console.log(mutationResponse.data.addRecipe._id);
   };
@@ -182,7 +185,6 @@ const NewRecipe = (props) => {
               <SlInput
                 label="Prep Time"
                 name="prepTime"
-                required
                 value={formState.prepTime}
                 onSlInput={handleChange}
               />
@@ -192,7 +194,6 @@ const NewRecipe = (props) => {
               <SlInput
                 label="Cook Time"
                 name="cookTime"
-                required
                 value={formState.cookTime}
                 onSlInput={handleChange}
               />
@@ -202,7 +203,6 @@ const NewRecipe = (props) => {
               <SlInput
                 label="Total Time"
                 name="totalTime"
-                required
                 value={formState.totalTime}
                 onSlInput={handleChange}
               />
@@ -212,7 +212,6 @@ const NewRecipe = (props) => {
               <SlInput
                 label="Servings"
                 name="servings"
-                required
                 value={formState.servings}
                 onSlInput={handleChange}
               />
@@ -222,7 +221,6 @@ const NewRecipe = (props) => {
               <SlInput
                 label="Yield"
                 name="yield"
-                required
                 value={formState.yield}
                 onSlInput={handleChange}
               />

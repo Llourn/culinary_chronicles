@@ -10,10 +10,10 @@ const recipeSchema = new Schema(
     },
     name: {
       type: String,
+      required: true,
     },
     description: {
       type: String,
-      minlength: 10,
       maxlength: 500,
     },
     prepTime: {
@@ -34,11 +34,13 @@ const recipeSchema = new Schema(
     ingredients: [
       {
         type: String,
+        required: true,
       },
     ],
     directions: [
       {
         type: String,
+        required: true,
       },
     ],
     image: {
@@ -52,9 +54,8 @@ const recipeSchema = new Schema(
     ],
   },
   { timestamps: true } // Allows you to use createdAt and updatedAt, might be useful for sorting
-  // createdAt happens as soon as something is created, updatedAt is changed on every save(), updateOne(), updateMany(), findOneAndUpdate(), update(), replaceOne(), and/or bulkWrite()
+  // createdAt happens as soon as something is created, updatedAt is changed on every save(), updateOne(), updateMany(), findOneAndUpdate(), update(), replaceOne(), and/or bulkWrite());
 );
-
 const Recipe = mongoose.model("Recipe", recipeSchema);
 
 module.exports = Recipe;
