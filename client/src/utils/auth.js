@@ -14,7 +14,6 @@ class AuthService {
   isTokenExpired(token) {
     try {
       const decoded = decode(token);
-      console.log(decoded.exp);
       if (decoded.exp < Date.now() / 1000) {
         return true;
       } else return false;
@@ -32,7 +31,7 @@ class AuthService {
     // Saves user token to localStorage
     localStorage.setItem("id_token", idToken);
 
-    window.location.assign("/");
+    window.location.assign("/profile");
   }
 
   logout() {
@@ -43,4 +42,6 @@ class AuthService {
   }
 }
 
-export default new AuthService();
+const auth = new AuthService();
+
+export default auth;
