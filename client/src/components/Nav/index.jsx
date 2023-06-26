@@ -1,56 +1,39 @@
-import React, { useState } from "react";
-import {
-  SlTab,
-  SlTabGroup,
-  SlInput,
-  SlIcon,
-} from "@shoelace-style/shoelace/dist/react";
+import { SlIcon } from "@shoelace-style/shoelace/dist/react";
 import styles from "./Nav.module.css";
+import auth from "../../utils/auth";
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
-  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
-  const handleSearchChange = (e) => {
-    setSearchValue(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    console.log("search submitted: ", searchValue);
+  const logout = () => {
+    auth.logout();
+    navigate("/");
   };
 
   return (
-    <SlTabGroup className={styles.group}>
-      <SlTab slot="nav" panel="culinary">
-        <a href="#" style={{ textDecoration: "none", color: "white" }}>
-          Culinary Chronicles
-        </a>
-      </SlTab>
-      {/* Will Link to Profile/Login/Sign-up When completed */}
-      <SlTab slot="nav" panel="profile">
-        🤦‍♀️
-      </SlTab>
-      <SlInput
-        type="search"
-        size="small"
-        pill
-        slot="nav"
-        panel="search"
-        placeholder="Search"
-        value={searchValue}
-        onInput={handleSearchChange}
-        onSubmit={handleSearchSubmit}
-        style={{ marginTop: "0.75rem" }}
-      >
-        {/* Click the Icon to Search */}
-        <SlIcon
-          name="search"
-          slot="suffix"
-          onClick={handleSearchSubmit}
-          style={{ cursor: "pointer" }}
-        ></SlIcon>
-      </SlInput>
-    </SlTabGroup>
+    <div className={styles.nav}>
+      <div className={styles.navContainer}>
+        <div className={styles.logo} onClick={() => navigate("/")}>
+          <img src="./images/logo-icon.svg" alt="logo" />
+          <span>Culinary Chronicles</span>
+        </div>
+        <div className={styles.navigation}>
+          {auth.loggedIn() ? (
+            <SlIcon name="person-circle" onClick={() => navigate("/profile")} />
+          ) : (
+            <SlIcon
+              name="box-arrow-in-right"
+              onClick={() => navigate("/login")}
+            />
+          )}
+          <SlIcon name="search" onClick={() => navigate("/search")} />
+          {auth.loggedIn() && (
+            <SlIcon name="box-arrow-right" onClick={() => logout()} />
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
