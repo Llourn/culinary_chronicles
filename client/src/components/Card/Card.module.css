@@ -25,3 +25,12 @@
   padding: 0;
   text-align: center;
 }
+
+img.dialogImage {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  padding-top: 0;
+}

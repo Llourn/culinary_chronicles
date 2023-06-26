@@ -42,14 +42,18 @@ const Card = ({
         <p>{likes}</p>
       </div>
       <SlDialog
-        label="Recipe"
+        label={name}
         open={open}
         style={{ "--width": "50vw" }}
         onSlAfterHide={() => setOpen(false)}
       >
-        <strong>{name}</strong>
+        <img
+          className={styles.dialogImage}
+          alt="recipe"
+          src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+        />
         <br />
-        <small>{`${firstName} ${lastName}`}</small>
+        {`By: ${firstName} ${lastName}`}
         <br />
         {description}
         <SlDivider />
