@@ -5,7 +5,7 @@ import { QUERY_USERS_LIKED_RECIPES } from "../utils/queries";
 import { QUERY_RECIPE_BY_ID } from "../utils/queries";
 
 const Test = () => {
-  const recipeId = "64972598862c5bac379b4a2b";
+  const recipeId = "6498dd6d1013314cf3cd59b9";
   const userId = "6498896d9b5208d7dabad300";
   const { loading, data } = useQuery(QUERY_RECIPE_BY_ID, {
     variables: { recipeId: recipeId },
