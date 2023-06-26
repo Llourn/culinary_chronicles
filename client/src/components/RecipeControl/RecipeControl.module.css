@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 500px;
+  margin: 1rem;
+  gap: 1rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+}
