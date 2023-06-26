@@ -13,7 +13,6 @@ const recipeSchema = new Schema({
   },
   description: {
     type: String,
-    minlength: 10,
     maxlength: 500,
   },
   prepTime: {
