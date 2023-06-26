@@ -5,18 +5,68 @@ export const QUERY_USER = gql`
     user {
       firstName
       lastName
-      orders {
+      email
+      bannerUrl
+      bio
+      profilePicUrl
+    }
+  }
+`;
+
+export const QUERY_USER_BY_ID = gql`
+  query Query($userId: ID) {
+    userById(userId: $userId) {
+      _id
+      firstName
+      lastName
+      bio
+      profilePicUrl
+      bannerUrl
+    }
+  }
+`;
+
+export const QUERY_USERS_LIKED_RECIPES = gql`
+  query Query($userId: ID) {
+    likedRecipes(userId: $userId) {
+      _id
+      author {
         _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          price
-          quantity
-          image
-        }
+        firstName
+        lastName
       }
+      name
+      description
+      image
+    }
+  }
+`;
+
+export const QUERY_RECIPE_LIKE_COUNT = gql`
+  query Query($recipeId: ID) {
+    recipeLikes(recipeId: $recipeId)
+  }
+`;
+
+export const QUERY_RECIPE_BY_ID = gql`
+  query RecipeById($recipeId: ID) {
+    recipeById(recipeId: $recipeId) {
+      author {
+        _id
+        firstName
+        lastName
+      }
+      name
+      description
+      prepTime
+      cookTime
+      totalTime
+      servings
+      yield
+      ingredients
+      directions
+      image
+      tags
     }
   }
 `;

@@ -13,6 +13,10 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    userById: async (parent, args, context) => {
+      const user = await User.findById(args.userId).select("-email");
+      return user;
+    },
     recipes: async (parent, args) => {
       const result = await Recipe.find({
         //or operator to find recipes with tags or name
@@ -21,6 +25,11 @@ const resolvers = {
       });
 
       return await User.populate(result, { path: "author" });
+    },
+    recipeById: async (parent, args) => {
+      const result = await Recipe.findById(args.recipeId);
+
+      return await User.populate(result, { path: "author", select: "-email" });
     },
     likedRecipes: async (parent, args) => {
       const result = await LikedRecipe.aggregate([
@@ -98,12 +107,29 @@ const resolvers = {
 
       return { token, user };
     },
-    addRecipe: async (parent, args) => {
-      const result = await Recipe.create(args);
+    addRecipe: async (parent, args, context) => {
+      if (context.user) {
+        const result = await Recipe.create({
+          author: context.user._id,
+          ...args,
+        });
 
-      return await User.populate(result, { path: "author" });
+        return await User.populate(result, { path: "author" });
+      }
+
+      throw new AuthenticationError("Not logged in");
     },
     updateRecipe: async (parent, args, context) => {
+      if (context.user) {
+        const result = await Recipe.findByIdAndUpdate(args._id, {
+          ...args,
+        });
+
+        return await User.populate(result, { path: "author" });
+      }
+
+      throw new AuthenticationError("Not logged in");
+
       const result = await Recipe.findByIdAndUpdate(args._id, args, {
         new: true,
       });
