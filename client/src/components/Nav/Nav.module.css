@@ -1,12 +1,49 @@
-/* The line under each nav item */
-.group::part(active-tab-indicator) {
-  border-radius: 15px;
-  border-bottom-color: white;
-}
-
-.group {
+.nav {
   position: sticky;
   top: 0;
   background-color: var(--dark);
   z-index: 1000;
+  height: 55px;
+  border-bottom: solid 2px var(--light);
+}
+
+.navContainer {
+  height: 100%;
+  max-width: var(--container-size);
+  margin: auto;
+  padding-inline: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Niramit", sans-serif;
+  line-height: 1;
+  font-size: 1.3rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 70%;
+  margin-right: 0.5rem;
+}
+
+.navigation {
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+  font-size: 1.5rem;
+  align-items: center;
+}
+
+.navigation sl-icon {
+  cursor: pointer;
+}
+
+.navigation sl-icon:hover {
+  color: var(--secondary);
 }

@@ -19,6 +19,8 @@ import Test from "./pages/Test";
 import Nav from "./components/Nav/index";
 import Footer from "./components/Footer/index";
 import NewRecipe from "./pages/NewRecipe";
+import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 
 setBasePath(
   "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/"
@@ -53,12 +55,14 @@ function App() {
             <Routes>
               <Route path="/" element={<Home title="Culinary Chronicles" />} />
               <Route path="/login" element={<Login title="Log In" />} />
-              <Route path="/signup" element={<Signup title="Sign Up" />} />
-              <Route path="/test" element={<Test />} />
               <Route
                 path="/new-recipe"
                 element={<NewRecipe title="New Recipe" />}
               />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/signup" element={<Signup title="Sign Up" />} />
+              <Route path="/test" element={<Test />} />
               <Route path="*" element={<NoMatch title="Error 404" />} />
             </Routes>
           </main>
