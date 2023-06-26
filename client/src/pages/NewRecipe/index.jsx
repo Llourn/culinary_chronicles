@@ -266,18 +266,6 @@ const NewRecipe = (props) => {
           </SlButton>
         </div>
       </form>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   );
 };

@@ -1,0 +1,27 @@
+.cardOverview {
+  max-width: 300px;
+}
+
+.cardOverview small {
+  color: var(--sl-color-neutral-500);
+}
+
+.cardOverview [slot="footer"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardOverview img {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  border-radius: var(--sl-border-radius-medium);
+}
+
+.cardOverview p {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}

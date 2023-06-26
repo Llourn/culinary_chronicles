@@ -1,46 +1,40 @@
 import React from "react";
+import Card from "../components/Card/index";
 import { useQuery } from "@apollo/client";
 import { QUERY_USERS_LIKED_RECIPES } from "../utils/queries";
-import { SlSpinner } from "@shoelace-style/shoelace/dist/react";
+import { QUERY_RECIPE_BY_ID } from "../utils/queries";
 
 const Test = () => {
-  const recipeId = "6498896d9b5208d7dabad308";
+  const recipeId = "6498dd6d1013314cf3cd59b9";
   const userId = "6498896d9b5208d7dabad300";
-  const { loading, data } = useQuery(QUERY_USERS_LIKED_RECIPES, {
-    variables: { userId },
+  const { loading, data } = useQuery(QUERY_RECIPE_BY_ID, {
+    variables: { recipeId: recipeId },
   });
   let recipes;
 
   if (data) {
-    console.log(data);
-    recipes = data.likedRecipes;
-    console.log(recipes);
+    // console.log(data);
+    console.log(data.recipeById);
+    // // recipes = data.likedRecipes;
+    // console.log(recipes);
+    recipes = data.recipeById;
   }
 
-  return (
+  return data ? (
     <div>
-      {loading ? (
-        <SlSpinner
-          style={{
-            fontSize: "3rem",
-            "--track-width": "6px",
-            "--indicator-color": "deeppink",
-            "--track-color": "pink",
-          }}
-        />
-      ) : (
-        <p>{JSON.stringify(recipes)}</p>
-      )}
-      <h1>Test</h1>
-      <SlSpinner
-        style={{
-          fontSize: "3rem",
-          "--track-width": "6px",
-          "--indicator-color": "deeppink",
-          "--track-color": "pink",
-        }}
+      <Card
+        name={recipes?.name}
+        firstName={recipes?.author.firstName}
+        lastName={recipes?.author.lastName}
+        description={recipes?.description}
+        createdAt={recipes?.createdAt}
+        likes={recipes?.likes}
+        ingredients={recipes?.ingredients}
+        directions={recipes?.directions}
       />
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };
 
