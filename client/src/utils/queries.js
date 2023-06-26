@@ -70,3 +70,27 @@ export const QUERY_RECIPE_BY_ID = gql`
     }
   }
 `;
+
+export const QUERY_ALL_RECIPES = gql`
+  query Query($name: String) {
+    recipes(name: $name) {
+      _id
+      author {
+        _id
+        firstName
+        lastName
+      }
+      name
+      description
+      prepTime
+      cookTime
+      totalTime
+      servings
+      yield
+      ingredients
+      directions
+      image
+      tags
+    }
+  }
+`;
