@@ -34,7 +34,7 @@ export const ADD_USER = gql`
 
 export const ADD_RECIPE = gql`
   mutation AddRecipe(
-    $name: String
+    $name: String!
     $image: String
     $description: String
     $prepTime: String
@@ -42,8 +42,8 @@ export const ADD_RECIPE = gql`
     $totalTime: String
     $servings: String
     $yield: String
-    $ingredients: [String]
-    $directions: [String]
+    $ingredients: [String]!
+    $directions: [String]!
   ) {
     addRecipe(
       name: $name

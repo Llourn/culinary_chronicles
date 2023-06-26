@@ -9,10 +9,10 @@ const recipeSchema = new Schema({
   },
   name: {
     type: String,
+    required: true,
   },
   description: {
     type: String,
-
     minlength: 10,
     maxlength: 500,
   },
@@ -34,11 +34,13 @@ const recipeSchema = new Schema({
   ingredients: [
     {
       type: String,
+      required: true,
     },
   ],
   directions: [
     {
       type: String,
+      required: true,
     },
   ],
   image: {

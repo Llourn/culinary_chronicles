@@ -120,6 +120,16 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
     updateRecipe: async (parent, args, context) => {
+      if (context.user) {
+        const result = await Recipe.findByIdAndUpdate(args._id, {
+          ...args,
+        });
+
+        return await User.populate(result, { path: "author" });
+      }
+
+      throw new AuthenticationError("Not logged in");
+
       const result = await Recipe.findByIdAndUpdate(args._id, args, {
         new: true,
       });

@@ -65,15 +65,15 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addRecipe(
       author: ID
-      name: String
+      name: String!
       description: String
       prepTime: String
       cookTime: String
       totalTime: String
       servings: String
       yield: String
-      ingredients: [String]
-      directions: [String]
+      ingredients: [String]!
+      directions: [String]!
       image: String
       tags: [String]
     ): Recipe
