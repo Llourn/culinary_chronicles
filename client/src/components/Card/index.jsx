@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   SlButton,
   SlCard,
@@ -6,9 +7,6 @@ import {
   SlDialog,
 } from "@shoelace-style/shoelace/dist/react";
 import styles from "./Card.module.css";
-
-import { useQuery } from "@apollo/client";
-import { QUERY_RECIPE_BY_ID } from "../utils/queries";
 
 const Card = ({
   name,
@@ -22,18 +20,6 @@ const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
 
-  const { data } = useQuery(QUERY_RECIPE_BY_ID, {
-    variables: { recipeId: recipe._id },
-  });
-
-  let recipe;
-  let author;
-
-  if (data) {
-    recipe = data.recipe;
-    author = data.recipe.author;
-  }
-
   return (
     <SlCard className={styles.cardOverview}>
       <img
@@ -41,18 +27,18 @@ const Card = ({
         src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
         slot="image"
       />
-      <strong>{recipe.name}</strong>
+      <strong>{name}</strong>
       <br />
-      <small>{`${author.firstName} ${author.lastName}`}</small>
+      <small>{`${firstName} ${lastName}`}</small>
       <br />
-      {recipe.description}
+      {description}
       <br />
-      <small>{recipe.createdAt}</small>
+      <small>{createdAt}</small>
       <div slot="footer">
         <SlButton variant="dark" onClick={() => setOpen(true)}>
           SEE RECIPE
         </SlButton>
-        <p>{recipe.likes}</p>
+        <p>{likes}</p>
       </div>
       <SlDialog
         label="Recipe"
@@ -60,18 +46,24 @@ const Card = ({
         style={{ "--width": "50vw" }}
         onSlAfterHide={() => setOpen(false)}
       >
-        <strong>{recipe.name}</strong>
+        <strong>{name}</strong>
         <br />
-        <small>{`${author.firstName} ${author.lastName}`}</small>
+        <small>{`${firstName} ${lastName}`}</small>
         <br />
-        {recipe.description}
+        {description}
         <br />
-        {recipe.ingredients.map((ingredient) => (
-          <p>{ingredient}</p>
+        {ingredients?.map((ingredient) => (
+          <p>
+            <br />
+            {ingredient}
+          </p>
         ))}
         <br />
-        {recipe.directions.map((direction) => (
-          <p>{direction}</p>
+        {directions?.map((direction) => (
+          <p>
+            <br />
+            {direction}
+          </p>
         ))}
         <SlRating
           label="Rating"

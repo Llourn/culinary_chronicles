@@ -36,6 +36,11 @@ const recipeSchema = new Schema(
         type: String,
       },
     ],
+    directions: [
+      {
+        type: String,
+      },
+    ],
     image: {
       type: String,
     },
