@@ -61,3 +61,45 @@ export const ADD_RECIPE = gql`
     }
   }
 `;
+
+export const UPDATE_RECIPE = gql`
+  mutation Mutation(
+    $id: ID!
+    $name: String
+    $description: String
+    $prepTime: String
+    $cookTime: String
+    $totalTime: String
+    $servings: Int
+    $yield: String
+    $ingredients: [String]
+    $directions: String
+    $image: String
+    $tags: [String]
+  ) {
+    updateRecipe(
+      _id: $id
+      name: $name
+      description: $description
+      prepTime: $prepTime
+      cookTime: $cookTime
+      totalTime: $totalTime
+      servings: $servings
+      yield: $yield
+      ingredients: $ingredients
+      directions: $directions
+      image: $image
+      tags: $tags
+    ) {
+      _id
+    }
+  }
+`;
+
+export const DELETE_RECIPE = gql`
+  mutation Mutation($id: ID!) {
+    deleteRecipe(_id: $id) {
+      _id
+    }
+  }
+`;
