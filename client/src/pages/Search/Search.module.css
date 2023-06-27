@@ -1,0 +1,14 @@
+.labelOnLeft {
+    max-width: 550px;
+    margin: auto;
+  }
+
+  .onRight{
+    text-align: center;
+    margin-top: 2rem;
+    vertical-align: middle;
+  }
+  .text {
+    text-align: center;
+    margin-top: 2rem;
+  }
