@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Card from "../../components/Card";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_RECIPES } from "../../utils/queries";
 import styles from "./Search.module.css";
-import { SlIcon, SlInput, SlButton } from "@shoelace-style/shoelace/dist/react";
+import { SlInput, SlButton } from "@shoelace-style/shoelace/dist/react";
 import { SlSpinner } from "@shoelace-style/shoelace/dist/react";
 
 const Search = () => {
@@ -13,13 +13,12 @@ const Search = () => {
     variables: { name: searchSubmitted },
     skip: !searchSubmitted,
   });
-  console.log(data);
-  const searchRecipies = data?.recipes || [];
-  console.log(searchRecipies);
+
+  const searchRecipes = data?.recipes || [];
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setSearchSubmitted(searchInput);
-    setSearchInput("");
   };
 
   const handleChange = (event) => {
@@ -29,64 +28,53 @@ const Search = () => {
 
   return (
     <>
-      <div className={styles.text}>
-        <SlButton variant="text" size="small">
-          BREAKFAST
-        </SlButton>
-        <SlButton variant="text" size="small">
-          DINNER
-        </SlButton>
-        <SlButton variant="text" size="small">
-          DRINKS
-        </SlButton>
-        <br />
-        <SlButton variant="text" size="small">
-          LUNCH
-        </SlButton>
-        <SlButton variant="text" size="small">
-          DESSERT
-        </SlButton>
-      </div>
-      <SlInput
-        className={styles.labelOnLeft}
-        label="SEARCH RECIPIE"
-        placeholder="Type Recipie Name"
-        size="small"
-        value={searchInput}
-        clearable
-        onSlInput={handleChange}
-      ></SlInput>
-      <div className={styles.onRight}>
-        <SlButton
-          variant="primary"
-          onClick={handleSubmit}
-          type="submit"
-          outline
-        >
-          SEARCH
-        </SlButton>
-      </div>
-
-      {searchRecipies.map((recipie) => {
-        return (
-          <div className="container">
-            <Card
-              name={recipie?.name}
-              firstName={recipie?.author.firstName}
-              lastName={recipie?.author.lastName}
-              description={recipie?.description}
-              createdAt={recipie?.createdAt}
-              likes={recipie?.likes}
-              ingredients={recipie?.ingredients}
-              directions={recipie?.directions}
+      <form onSubmit={handleSubmit} className={styles.searchInput}>
+        <SlInput
+          className={styles.searchInput}
+          label="Search Recipe"
+          placeholder="Type Recipe Name"
+          size="medium"
+          value={searchInput}
+          clearable
+          onSlInput={handleChange}
+        ></SlInput>
+        <div className={styles.button}>
+          <SlButton variant="primary" type="submit" outline>
+            SEARCH
+          </SlButton>
+        </div>
+      </form>
+      <div className="container">
+        <div className={styles.resultsContainer}>
+          {loading ? (
+            <SlSpinner
+              style={{
+                fontSize: "4rem",
+                "--indicator-color": "var(--secondary)",
+                "--track-width": "6px",
+              }}
             />
-          </div>
-        );
-      })}
-
-      {/* <div onClick={handleSubmit}>Loading...
-              <SlSpinner />
-              </div>  */}
+          ) : searchRecipes.length > 0 ? (
+            searchRecipes.map((recipe, index) => {
+              return (
+                <Card
+                  name={recipe?.name}
+                  firstName={recipe?.author.firstName}
+                  lastName={recipe?.author.lastName}
+                  description={recipe?.description}
+                  createdAt={recipe?.createdAt}
+                  likes={recipe?.likes}
+                  ingredients={recipe?.ingredients}
+                  directions={recipe?.directions}
+                  key={index}
+                />
+              );
+            })
+          ) : (
+            <p>There are no results to display. 😢</p>
+          )}
+        </div>
+      </div>
     </>
   );
 };
