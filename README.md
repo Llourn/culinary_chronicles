@@ -21,6 +21,7 @@
 ## Usage
 
 
+
 ## Heroku link
 
 
@@ -37,9 +38,10 @@ Following is the screenshots of my application:
 
 ## Cradits
 Contributors:
+[Lorne Cyr](https://github.com/Llourn)
+[Justin Connors]()
 [Sehar Uzair](https://github.com/calligraphist)
-
-
+[Amanda Edmond]()
 
 ---
 © 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved

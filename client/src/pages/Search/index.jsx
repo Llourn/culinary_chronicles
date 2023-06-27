@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card";
 import { useQuery } from "@apollo/client";
-import { QUERY_ALL_RECIPES} from "../../utils/queries"
+import { QUERY_ALL_RECIPES } from "../../utils/queries";
 import styles from "./Search.module.css";
 import { SlIcon, SlInput, SlButton } from "@shoelace-style/shoelace/dist/react";
-import { SlSpinner } from '@shoelace-style/shoelace/dist/react';
+import { SlSpinner } from "@shoelace-style/shoelace/dist/react";
 
 const Search = () => {
-  const [searchInput, setSearchInput] = useState('');
-  const [searchSubmitted, setSearchSubmitted] = useState('');
-  const {loading, data} = useQuery( QUERY_ALL_RECIPES,{
-         variables:{name: searchSubmitted},
-         skip: !searchSubmitted
-      });
-      console.log(data);
-const searchRecipies = data?.recipes || []
-console.log(searchRecipies);
-   const handleSubmit = (event) =>{
-    event.preventDefault()
-    setSearchSubmitted(searchInput) 
-    setSearchInput("")
-   };
-  
+  const [searchInput, setSearchInput] = useState("");
+  const [searchSubmitted, setSearchSubmitted] = useState("");
+  const { loading, data } = useQuery(QUERY_ALL_RECIPES, {
+    variables: { name: searchSubmitted },
+    skip: !searchSubmitted,
+  });
+  console.log(data);
+  const searchRecipies = data?.recipes || [];
+  console.log(searchRecipies);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSearchSubmitted(searchInput);
+    setSearchInput("");
+  };
+
   const handleChange = (event) => {
     const { value } = event.target;
-    setSearchInput(value)
+    setSearchInput(value);
   };
 
   return (
@@ -54,30 +54,37 @@ console.log(searchRecipies);
         size="small"
         value={searchInput}
         clearable
-         onSlInput={handleChange}
+        onSlInput={handleChange}
       ></SlInput>
       <div className={styles.onRight}>
-        <SlButton variant="primary" onClick={handleSubmit} type="submit" outline>
+        <SlButton
+          variant="primary"
+          onClick={handleSubmit}
+          type="submit"
+          outline
+        >
           SEARCH
         </SlButton>
       </div>
 
       {searchRecipies.map((recipie) => {
-      return (<div className="container">
-         <Card
-            name={recipie?.name}
-            firstName = {recipie?.author.firstName}
-              lastName = {recipie?.author.lastName}
-             description = { recipie?.description}
+        return (
+          <div className="container">
+            <Card
+              name={recipie?.name}
+              firstName={recipie?.author.firstName}
+              lastName={recipie?.author.lastName}
+              description={recipie?.description}
               createdAt={recipie?.createdAt}
-              likes ={recipie?.likes}
+              likes={recipie?.likes}
               ingredients={recipie?.ingredients}
-              directions = {recipie?.directions}
+              directions={recipie?.directions}
             />
-            </div>
-            )})}
-            
-              {/* <div onClick={handleSubmit}>Loading...
+          </div>
+        );
+      })}
+
+      {/* <div onClick={handleSubmit}>Loading...
               <SlSpinner />
               </div>  */}
     </>
