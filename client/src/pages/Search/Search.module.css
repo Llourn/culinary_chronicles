@@ -1,0 +1,24 @@
+.searchInput {
+  max-width: 550px;
+  margin: auto;
+  padding-inline: 1rem;
+}
+
+.button {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.text {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.resultsContainer {
+  padding-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
