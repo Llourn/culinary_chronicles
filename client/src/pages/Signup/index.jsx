@@ -10,6 +10,8 @@ import styles from "./Signup.module.css";
 function Signup(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [addUser] = useMutation(ADD_USER);
+  const [error, setError] = useState(false);
+  const [userInput, setUserInput] = useState("");
 
   useEffect(() => {
     document.title = props.title;
@@ -35,6 +37,43 @@ function Signup(props) {
       ...formState,
       [name]: value,
     });
+  };
+
+  const handleBlur = (event) => {
+    const { name, value } = event.target;
+    const regex = new RegExp(
+      "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
+    );
+    const isValid = regex.test(value);
+    if (!isValid) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
+
+  const handleClear = (event) => {
+    const newValueIsValid = !event.target.validity.patternMismatch;
+    if (error) {
+      if (newValueIsValid) {
+        setError(false);
+      }
+    }
+    setUserInput(event.target.value);
+  };
+
+  const handleFocus = () => {
+    if (error) {
+      setError(false);
+    }
+  };
+
+  const style = (error) => {
+    if (error) {
+      return { "--sl-input-border-color": "red" };
+    } else {
+      return { "--sl-input-border-color": "green" };
+    }
   };
 
   return (
@@ -85,7 +124,11 @@ function Signup(props) {
           onSlInput={handleChange}
           required
           defaultValue=""
-          // pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          onChange={handleClear}
+          style={style(error)}
           helpText="Min. 8 characters, at least 1 uppercase, lowercase, number and special character"
         />
         <br />
