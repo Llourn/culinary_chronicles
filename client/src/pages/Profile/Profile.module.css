@@ -1,0 +1,35 @@
+.banner {
+  height: 15rem;
+  background-color: var(--tertiary);
+  background-size: cover;
+  background-position: center;
+}
+
+.avatarWrapper {
+  height: 100%;
+}
+
+.avatar {
+  --size: 7rem;
+  position: relative;
+  top: -3.5rem;
+}
+
+.avatar::part(image) {
+  border: 3px solid var(--primary);
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  max-width: 900px;
+  padding-inline: 1rem;
+  gap: 1rem;
+  height: 3.5rem;
+}
+
+.bio {
+  padding: 1rem;
+  text-wrap: balance;
+}
