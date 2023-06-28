@@ -44,5 +44,6 @@
   },
   "engines": {
     "node": "18.x"
-  }
+  },
+  "homepage": "./client/build"
 }
