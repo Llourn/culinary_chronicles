@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { ADD_USER } from "../../utils/mutations";
 import { SlButton, SlInput } from "@shoelace-style/shoelace/dist/react";
-
+import validator from "validator";
 import styles from "./Signup.module.css";
 
 function Signup(props) {
@@ -22,27 +22,17 @@ function Signup(props) {
   }, [props.title]);
 
   useEffect(() => {
-    let firstNameValid, lastNameValid, emailValid, passwordValid;
-    if (formState.firstName.length > 0) {
-      firstNameValid = true;
-    } else {
-      firstNameValid = false;
-    }
-    if (formState.lastName.length > 0) {
-      lastNameValid = true;
-    } else {
-      lastNameValid = false;
-    }
-    if (formState.email > 7) {
-      emailValid = true;
-    } else {
-      emailValid = false;
-    }
-    if (formState.password.length >= 8) {
-      passwordValid = true;
-    } else {
-      passwordValid = false;
-    }
+    const { firstName, lastName, email, password } = formState;
+    const firstNameValid = validator.isLength(firstName, { min: 1 });
+    const lastNameValid = validator.isLength(lastName, { min: 1 });
+    const emailValid = validator.isEmail(email);
+    const passwordValid = validator.isStrongPassword(password, {
+      min: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+    });
 
     const result =
       firstNameValid && lastNameValid && emailValid && passwordValid;
