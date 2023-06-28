@@ -8,14 +8,47 @@ import { SlButton, SlInput } from "@shoelace-style/shoelace/dist/react";
 import styles from "./Signup.module.css";
 
 function Signup(props) {
-  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [formState, setFormState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
   const [addUser] = useMutation(ADD_USER);
-  const [error, setError] = useState(false);
-  const [userInput, setUserInput] = useState("");
+  const [blockSubmit, setBlockSubmit] = useState(true);
 
   useEffect(() => {
     document.title = props.title;
   }, [props.title]);
+
+  useEffect(() => {
+    let firstNameValid, lastNameValid, emailValid, passwordValid;
+    if (formState.firstName.length > 0) {
+      firstNameValid = true;
+    } else {
+      firstNameValid = false;
+    }
+    if (formState.lastName.length > 0) {
+      lastNameValid = true;
+    } else {
+      lastNameValid = false;
+    }
+    if (formState.email > 7) {
+      emailValid = true;
+    } else {
+      emailValid = false;
+    }
+    if (formState.password.length >= 8) {
+      passwordValid = true;
+    } else {
+      passwordValid = false;
+    }
+
+    const result =
+      firstNameValid && lastNameValid && emailValid && passwordValid;
+
+    setBlockSubmit(!result);
+  }, [formState]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -39,43 +72,6 @@ function Signup(props) {
     });
   };
 
-  const handleBlur = (event) => {
-    const { name, value } = event.target;
-    const regex = new RegExp(
-      "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
-    );
-    const isValid = regex.test(value);
-    if (!isValid) {
-      setError(true);
-    } else {
-      setError(false);
-    }
-  };
-
-  const handleClear = (event) => {
-    const newValueIsValid = !event.target.validity.patternMismatch;
-    if (error) {
-      if (newValueIsValid) {
-        setError(false);
-      }
-    }
-    setUserInput(event.target.value);
-  };
-
-  const handleFocus = () => {
-    if (error) {
-      setError(false);
-    }
-  };
-
-  const style = (error) => {
-    if (error) {
-      return { "--sl-input-border-color": "red" };
-    } else {
-      return { "--sl-input-border-color": "green" };
-    }
-  };
-
   return (
     <div className={styles.formContainer}>
       <img
@@ -90,7 +86,6 @@ function Signup(props) {
           label="First Name"
           name="firstName"
           type="firstName"
-          id="firstName"
           required
           onSlInput={handleChange}
         />
@@ -99,7 +94,6 @@ function Signup(props) {
           label="Last Name"
           name="lastName"
           type="lastName"
-          id="lastName"
           required
           onSlInput={handleChange}
         />
@@ -109,7 +103,6 @@ function Signup(props) {
           placeholder="krillin@baldbychoice.dbz"
           name="email"
           type="email"
-          id="email"
           required
           onSlInput={handleChange}
         />
@@ -124,15 +117,15 @@ function Signup(props) {
           onSlInput={handleChange}
           required
           defaultValue=""
-          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          onChange={handleClear}
-          style={style(error)}
-          helpText="Min. 8 characters, at least 1 uppercase, lowercase, number and special character"
+          helpText="Min. 8 characters"
         />
         <br />
-        <SlButton type="submit" variant="primary" outline>
+        <SlButton
+          type="submit"
+          variant="primary"
+          outline
+          disabled={blockSubmit}
+        >
           Sign up
         </SlButton>{" "}
         <SlButton type="reset" variant="warning" outline>
