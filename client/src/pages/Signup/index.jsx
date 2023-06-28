@@ -18,6 +18,12 @@ function Signup(props) {
   const [blockSubmit, setBlockSubmit] = useState(true);
   const [error, setError] = useState("");
 
+  const errStyle = (error) => {
+    if (error) {
+      return { "--sl-input-border-color": "red" };
+    }
+  };
+
   useEffect(() => {
     document.title = props.title;
   }, [props.title]);
@@ -59,6 +65,7 @@ function Signup(props) {
       if (error.message.includes("duplicate key")) {
         console.log(error, "Email error");
         setError("Email already exists.");
+        errStyle(true);
       } else {
         console.log(error.message);
       }
@@ -109,6 +116,7 @@ function Signup(props) {
           type="email"
           required
           onSlInput={handleChange}
+          style={errStyle(error)}
         />
         <br />
         <SlInput
@@ -137,7 +145,11 @@ function Signup(props) {
           type="reset"
           variant="warning"
           outline
-          onClick={() => setBlockSubmit(true)}
+          onClick={() => {
+            setBlockSubmit(true);
+            setError("");
+            errStyle("--sl-input-border-color: var(--sl-color-neutral-300);");
+          }}
         >
           Reset
         </SlButton>
