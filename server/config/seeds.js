@@ -85,7 +85,8 @@ db.once("open", async () => {
         "Season with salt and pepper.",
         "Serve hot.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/15584737/pexels-photo-15584737/free-photo-of-delicious-scrambled-eggs.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["breakfast"],
     },
     {
@@ -111,7 +112,8 @@ db.once("open", async () => {
         "Toss to coat evenly.",
         "Serve immediately.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["lunch", "dinner"],
     },
     {
@@ -143,7 +145,8 @@ db.once("open", async () => {
         "Serve the sauce over cooked spaghetti.",
         "Garnish with grated Parmesan cheese.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/6287525/pexels-photo-6287525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["dinner"],
     },
     {
@@ -177,7 +180,8 @@ db.once("open", async () => {
         "Bake for 10-12 minutes or until golden brown.",
         "Cool on wire racks.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/7243524/pexels-photo-7243524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["dessert"],
     },
     {
@@ -205,7 +209,8 @@ db.once("open", async () => {
         "Taste and adjust the seasoning if needed.",
         "Serve with tortilla chips or as a topping for tacos or burritos.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/7601338/pexels-photo-7601338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["snack", "other"],
     },
     {
@@ -236,7 +241,8 @@ db.once("open", async () => {
         "Cook until bubbles form on the surface, then flip and cook until golden brown.",
         "Serve hot with your favorite toppings.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["breakfast"],
     },
     {
@@ -271,7 +277,8 @@ db.once("open", async () => {
         "Return to the oven and bake for an additional 10 minutes or until cheese is melted and bubbly.",
         "Garnish with fresh basil leaves before serving.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/7218637/pexels-photo-7218637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["dinner"],
     },
     {
@@ -300,7 +307,8 @@ db.once("open", async () => {
         "Allow the flavors to meld for at least 10 minutes before serving.",
         "Serve as a dip with tortilla chips or as a topping for grilled fish or tacos.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/5848734/pexels-photo-5848734.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["snack", "other"],
     },
     {
@@ -335,7 +343,8 @@ db.once("open", async () => {
         "Heat the soup for an additional 5 minutes.",
         "Serve hot with a garnish of fresh basil leaves.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/3493579/pexels-photo-3493579.jpeg",
       tags: ["lunch", "dinner"],
     },
     {
@@ -361,7 +370,8 @@ db.once("open", async () => {
         "Pour into glasses and serve immediately.",
         "Garnish with additional berries if desired.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/3625372/pexels-photo-3625372.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["breakfast", "snack"],
     },
     {
@@ -391,7 +401,8 @@ db.once("open", async () => {
         "Season with salt and pepper.",
         "Serve immediately as a light appetizer or side dish.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/13241857/pexels-photo-13241857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["lunch", "dinner"],
     },
     {
@@ -429,7 +440,8 @@ db.once("open", async () => {
         "Season with salt and pepper.",
         "Serve hot with steamed rice or noodles.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/105588/pexels-photo-105588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["dinner"],
     },
     {
@@ -463,7 +475,8 @@ db.once("open", async () => {
         "Bake for 18-20 minutes or until a toothpick inserted into the center comes out clean.",
         "Allow the muffins to cool in the tin for 5 minutes, then transfer to a wire rack to cool completely.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/556829/pexels-photo-556829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["breakfast", "snack"],
     },
     {
@@ -503,7 +516,8 @@ db.once("open", async () => {
         "Serve hot with steamed rice or naan bread.",
         "Garnish with fresh cilantro leaves.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/674574/pexels-photo-674574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["lunch", "dinner"],
     },
     {
@@ -544,7 +558,8 @@ db.once("open", async () => {
         "Dust with powdered sugar and garnish with fresh berries.",
         "Serve immediately, while the cakes are still warm and the centers are gooey.",
       ],
-      image: "https://example.com/recipeplaceholder.png",
+      image:
+        "https://images.pexels.com/photos/16488171/pexels-photo-16488171/free-photo-of-a-chocolate-cake-with-sprinkles.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["dessert"],
     },
   ]);
