@@ -1,41 +1,52 @@
-import React from "react";
-import { SlAvatar } from "@shoelace-style/shoelace/dist/react";
+import React, { useEffect } from "react";
+import { SlAvatar, SlSpinner } from "@shoelace-style/shoelace/dist/react";
 import styles from "./Profile.module.css";
+import { QUERY_USER } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
 
 const Profile = () => {
-  let avatarImage =
-    "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80";
+  const { loading, data: userData } = useQuery(QUERY_USER);
 
-  let bannerImage =
-    "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80";
+  let profilePicUrl =
+    userData?.user.profilePicUrl ||
+    "https://images.unsplash.com/photo-1568162603664-fcd658421851?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2162&q=80";
 
-  let name = "Cornelius Smatterhorne";
+  let bannerUrl =
+    userData?.user.bannerUrl ||
+    "https://images.unsplash.com/photo-1642067958050-bfba120a57e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2348&q=80";
 
-  let bio = `Born with a flair for the culinary arts and an unwavering passion for all things sweet, Cornelius Smatterhorne has carved his name in the annals of gastronomy as the infamous pastry chef extraordinaire. Renowned for his audacious creations and unorthodox methods, Smatterhorne has captured the world's imagination, tantalizing taste buds and pushing the boundaries of dessert craftsmanship.
-  
-From his early days in a humble bakery tucked away in a quaint countryside town, Cornelius demonstrated an innate talent for transforming simple ingredients into edible masterpieces. His insatiable curiosity led him to experiment with unconventional flavor combinations and innovative techniques, forever challenging the status quo of traditional pastry-making.
-  
-Word of his extraordinary talent quickly spread, and soon enough, Smatterhorne found himself in the kitchens of Michelin-starred restaurants and prestigious culinary institutions. With each dish he crafted, he dazzled patrons and critics alike, leaving a lasting impression on their palates and forever altering their perception of what desserts could be.
-  
-What truly sets Cornelius Smatterhorne apart is his fearless creativity and his refusal to conform to conventions. He fearlessly blends unexpected ingredients like lavender and saffron, marries savory and sweet in harmonious unions, and turns familiar treats into avant-garde delights. His mastery lies not only in the visual aesthetics of his creations but also in the way each bite evokes a symphony of flavors and textures, igniting a sensory journey that lingers long after the plate is empty.
-  
-Yet, alongside his culinary prowess, Smatterhorne has earned a reputation for his enigmatic persona. An eccentric figure with an air of mystery, he cloaks his process in secrecy, guarding his techniques and recipes with unwavering zeal. This aura of mystique only adds to the allure surrounding his work, leaving patrons and aspiring pastry chefs alike captivated and hungry for more.
-  
-Cornelius Smatterhorne's illustrious career has garnered him countless accolades and international acclaim. His desserts have graced the tables of heads of state, celebrities, and discerning food enthusiasts across the globe. Today, his name is whispered in revered tones, spoken with both reverence and a hint of awe, as his innovations continue to shape the very landscape of pastry-making.
-  
-As the infamous pastry chef, Cornelius Smatterhorne stands as an iconoclast, a visionary who defies expectations and elevates desserts to an art form. With his daring creations, he continues to inspire the next generation of pastry chefs, urging them to break free from tradition and embrace the uncharted realms of culinary possibility.`;
-  return (
+  let name =
+    userData?.user.firstName || userData?.user.lastName
+      ? `${userData.user.firstName} ${userData.user.lastName}`.trim()
+      : "Cornelius Smatterhorne";
+
+  let bio =
+    userData?.user.bio ||
+    `As a bear, I must admit that I have an unabashed and somewhat unhealthy obsession with honey. Oh, the sweet, golden nectar that entices my senses! The mere thought of that sticky, delectable substance sends shivers of delight down my furry spine. Whether it's the delicate floral notes or the rich, indulgent texture, honey holds an irresistible allure for me. I find myself daydreaming about vast fields of blooming flowers, their nectar transforming into the liquid gold that I crave. My heart races at the sight of a beehive, and I can't help but feel an insatiable desire to sample its precious contents. Yes, it's true, my devotion to honey knows no bounds. I gladly wander through forests, endure stings, and brave the wrath of bees, all for that sweet ambrosia that brings me immense joy. Alas, I must admit that my love for honey may be a bit excessive, but can you blame me? It's a weakness that I cannot resist, for in every taste, I find a momentary escape into pure bliss.`;
+
+  console.log(userData);
+  return loading ? (
+    <div className={styles.pageSpinner}>
+      <SlSpinner
+        style={{
+          fontSize: "4rem",
+          "--indicator-color": "var(--secondary)",
+          "--track-width": "6px",
+        }}
+      />
+    </div>
+  ) : (
     <div>
       <div
         className={styles.banner}
-        style={{ backgroundImage: `url(${bannerImage})` }}
+        style={{ backgroundImage: `url(${bannerUrl})` }}
       ></div>
       <div className={styles.info}>
         <div className={styles.avatarWrapper}>
           <SlAvatar
             className={styles.avatar}
             label="User avatar"
-            image={avatarImage}
+            image={profilePicUrl}
           />
         </div>
         <div className={styles.infoText}>
@@ -43,6 +54,7 @@ As the infamous pastry chef, Cornelius Smatterhorne stands as an iconoclast, a v
         </div>
       </div>
       <pre className={styles.bio}>{bio}</pre>
+      <pre>{JSON.stringify(userData.user.email)}</pre>
     </div>
   );
 };
