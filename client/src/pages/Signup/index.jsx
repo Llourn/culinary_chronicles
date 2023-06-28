@@ -107,7 +107,7 @@ function Signup(props) {
           onSlInput={handleChange}
           required
           defaultValue=""
-          helpText="Min. 8 characters"
+          helpText="Min. 8 characters with at least 1 lowercase, 1 uppercase, 1 number, and 1 symbol."
         />
         <br />
         <SlButton
