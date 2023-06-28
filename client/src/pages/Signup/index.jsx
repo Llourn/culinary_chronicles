@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useMutation, useLazyQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { ADD_USER } from "../../utils/mutations";
-import { QUERY_USER } from "../../utils/queries";
 import { SlButton, SlInput } from "@shoelace-style/shoelace/dist/react";
 import validator from "validator";
 import styles from "./Signup.module.css";
@@ -134,7 +133,12 @@ function Signup(props) {
         >
           Sign up
         </SlButton>{" "}
-        <SlButton type="reset" variant="warning" outline>
+        <SlButton
+          type="reset"
+          variant="warning"
+          outline
+          onClick={() => setBlockSubmit(true)}
+        >
           Reset
         </SlButton>
       </form>
