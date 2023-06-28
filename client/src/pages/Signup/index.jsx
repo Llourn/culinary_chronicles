@@ -24,6 +24,12 @@ function Signup(props) {
     }
   };
 
+  const handleFocus = () => {
+    if (error) {
+      setError(false);
+    }
+  };
+
   useEffect(() => {
     document.title = props.title;
   }, [props.title]);
@@ -117,6 +123,7 @@ function Signup(props) {
           required
           onSlInput={handleChange}
           style={errStyle(error)}
+          onfocus={handleFocus}
         />
         <br />
         <SlInput
