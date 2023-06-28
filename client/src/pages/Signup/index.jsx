@@ -64,7 +64,7 @@ function Signup(props) {
       console.log(error);
       if (error.message.includes("duplicate key")) {
         console.log(error, "Email error");
-        setError("Email already exists.");
+        setError(`Email already exists: ${formState.email}`);
         errStyle(true);
       } else {
         console.log(error.message);
