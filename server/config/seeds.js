@@ -1,3 +1,4 @@
+require("dotenv").config();
 const db = require("./connection");
 const { User, Recipe, LikedRecipe } = require("../models");
 

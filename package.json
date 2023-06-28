@@ -1,7 +1,7 @@
 {
   "name": "culinary-chronicles",
   "version": "1.0.0",
-  "description": "",
+  "description": "The best recipe site ever",
   "main": "server/server.js",
   "scripts": {
     "start": "node server --ignore client",
@@ -11,12 +11,15 @@
     "build": "cd client && npm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lorne Cyr, Justin Connors, Sehar Uzair, Amanda Edmond",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
   },
   "dependencies": {
     "react-icons": "^4.9.0"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
