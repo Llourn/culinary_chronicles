@@ -26,7 +26,12 @@ const Card = ({
 
   return (
     <SlCard className={styles.cardOverview}>
-      <img alt="recipe" src={image} slot="image" />
+      <img
+        className={styles.dialogImage}
+        alt="recipe"
+        src={image}
+        slot="image"
+      />
       <strong>{name}</strong>
       <br />
       <small>{`${firstName} ${lastName}`}</small>
