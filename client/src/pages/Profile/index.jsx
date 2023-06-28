@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { SlAvatar, SlSpinner } from "@shoelace-style/shoelace/dist/react";
 import styles from "./Profile.module.css";
 import { QUERY_USER } from "../../utils/queries";

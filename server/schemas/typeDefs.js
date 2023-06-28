@@ -45,6 +45,7 @@ const typeDefs = gql`
     recipes(name: String, tags: [String]): [Recipe]
     likedRecipes(userId: ID): [Recipe]
     recipeLikes(recipeId: ID): Int
+    recipesByAuthor(userId: ID): [Recipe]
   }
 
   type Mutation {

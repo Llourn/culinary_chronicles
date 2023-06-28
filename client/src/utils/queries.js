@@ -49,6 +49,34 @@ export const QUERY_RECIPE_LIKE_COUNT = gql`
   }
 `;
 
+export const QUERY_RECIPE_BY_AUTHORS = gql`
+  query Query($userId: ID) {
+    recipesByAuthor(userId: $userId) {
+      _id
+      author {
+        _id
+        firstName
+        lastName
+        email
+        bio
+        profilePicUrl
+        bannerUrl
+      }
+      name
+      description
+      prepTime
+      cookTime
+      totalTime
+      servings
+      yield
+      ingredients
+      directions
+      image
+      tags
+    }
+  }
+`;
+
 export const QUERY_RECIPE_BY_ID = gql`
   query RecipeById($recipeId: ID) {
     recipeById(recipeId: $recipeId) {
