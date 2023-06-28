@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
+import { useMutation, useLazyQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { ADD_USER } from "../../utils/mutations";
+import { QUERY_USER } from "../../utils/queries";
 import { SlButton, SlInput } from "@shoelace-style/shoelace/dist/react";
 import validator from "validator";
 import styles from "./Signup.module.css";
@@ -16,6 +17,7 @@ function Signup(props) {
   });
   const [addUser] = useMutation(ADD_USER);
   const [blockSubmit, setBlockSubmit] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     document.title = props.title;
@@ -41,17 +43,27 @@ function Signup(props) {
   }, [formState]);
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    const mutationResponse = await addUser({
-      variables: {
-        email: formState.email,
-        password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
-      },
-    });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
+    try {
+      event.preventDefault();
+      const mutationResponse = await addUser({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+          firstName: formState.firstName,
+          lastName: formState.lastName,
+        },
+      });
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
+    } catch (error) {
+      console.log(error);
+      if (error.message.includes("duplicate key")) {
+        console.log(error, "Email error");
+        setError("Email already exists.");
+      } else {
+        console.log(error.message);
+      }
+    }
   };
 
   const handleChange = (event) => {
@@ -60,6 +72,9 @@ function Signup(props) {
       ...formState,
       [name]: value,
     });
+    if (error) {
+      setError("");
+    }
   };
 
   return (
@@ -110,6 +125,7 @@ function Signup(props) {
           helpText="Min. 8 characters with at least 1 lowercase, 1 uppercase, 1 number, and 1 symbol."
         />
         <br />
+        {error ? <p>{error}</p> : null}
         <SlButton
           type="submit"
           variant="primary"
