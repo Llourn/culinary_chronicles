@@ -18,6 +18,7 @@ const Card = ({
   likes,
   ingredients,
   directions,
+  image,
 }) => {
   const [open, setOpen] = useState(false);
   let dirCount = 0;
@@ -25,11 +26,7 @@ const Card = ({
 
   return (
     <SlCard className={styles.cardOverview}>
-      <img
-        alt="recipe"
-        src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
-        slot="image"
-      />
+      <img alt="recipe" src={image} slot="image" />
       <strong>{name}</strong>
       <br />
       <small>{`${firstName} ${lastName}`}</small>
@@ -50,11 +47,7 @@ const Card = ({
         style={{ "--width": "50vw" }}
         onSlAfterHide={() => setOpen(false)}
       >
-        <img
-          className={styles.dialogImage}
-          alt="recipe"
-          src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
-        />
+        <img className={styles.dialogImage} alt="recipe" src={image} />
         <br />
         {`By: ${firstName} ${lastName}`}
         <br />

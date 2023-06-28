@@ -66,6 +66,7 @@ const Search = () => {
                   likes={recipe?.likes}
                   ingredients={recipe?.ingredients}
                   directions={recipe?.directions}
+                  image={recipe?.image}
                   key={index}
                 />
               );
