@@ -14,5 +14,21 @@
 }
 
 .title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline: 1rem;
+  margin-bottom: 2rem;
+}
+
+.title > h2 {
+  margin: 0;
+}
+
+.newRecipeCTA {
+  text-align: center;
+  width: 100%;
   padding-inline: 1rem;
 }

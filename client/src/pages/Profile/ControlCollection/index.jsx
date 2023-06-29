@@ -3,15 +3,17 @@ import { useQuery } from "@apollo/client";
 import { QUERY_RECIPES_BY_AUTHOR } from "../../../utils/queries";
 import RecipeControl from "../../../components/RecipeControl";
 import styles from "./ControlCollection.module.css";
-import { Link } from "react-router-dom";
-import { SlSpinner } from "@shoelace-style/shoelace/dist/react";
+import { Link, useNavigate } from "react-router-dom";
+import { SlSpinner, SlButton } from "@shoelace-style/shoelace/dist/react";
 
 const ControlCollection = ({ userId }) => {
   const { loading, data } = useQuery(QUERY_RECIPES_BY_AUTHOR, {
     variables: { userId: userId },
     skip: !userId,
   });
-  console.log("control", userId);
+
+  const navigate = useNavigate();
+
   let recipes;
 
   if (data) {
@@ -21,7 +23,16 @@ const ControlCollection = ({ userId }) => {
 
   return (
     <>
-      <h2 className={styles.title}>My Recipes</h2>
+      <div className={styles.title}>
+        <h2>My Recipes</h2>{" "}
+        <SlButton
+          variant="primary"
+          outline
+          onClick={() => navigate("/new-recipe")}
+        >
+          NEW RECIPE
+        </SlButton>
+      </div>
       {loading ? (
         <div className={styles.pageSpinner}>
           <SlSpinner
@@ -39,7 +50,7 @@ const ControlCollection = ({ userId }) => {
               <RecipeControl key={index} recipe={recipe} />
             ))
           ) : (
-            <p>
+            <p className={styles.newRecipeCTA}>
               You don't seem to have any recipes,{" "}
               <Link to="/new-recipe">why don't you try making one?</Link>
             </p>
