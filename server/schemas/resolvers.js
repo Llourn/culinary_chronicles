@@ -18,7 +18,7 @@ const resolvers = {
       return user;
     },
     allRecipes: async (parent, args) => {
-      const result = Recipe.find({});
+      const result = await Recipe.find();
 
       return await User.populate(result, { path: "author" });
     },
