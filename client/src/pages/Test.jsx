@@ -3,6 +3,7 @@ import Card from "../components/Card/index";
 import { useQuery } from "@apollo/client";
 import { QUERY_USERS_LIKED_RECIPES } from "../utils/queries";
 import { QUERY_RECIPE_BY_ID } from "../utils/queries";
+import RecipeControl from "../components/RecipeControl";
 
 const Test = () => {
   const recipeId = "6498dd6d1013314cf3cd59b9";
@@ -22,16 +23,7 @@ const Test = () => {
 
   return data ? (
     <div>
-      <Card
-        name={recipes?.name}
-        firstName={recipes?.author.firstName}
-        lastName={recipes?.author.lastName}
-        description={recipes?.description}
-        createdAt={recipes?.createdAt}
-        likes={recipes?.likes}
-        ingredients={recipes?.ingredients}
-        directions={recipes?.directions}
-      />
+      <RecipeControl />
     </div>
   ) : (
     <div>Loading...</div>

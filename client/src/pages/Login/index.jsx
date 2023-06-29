@@ -10,6 +10,19 @@ import { SlButton, SlInput } from "@shoelace-style/shoelace/dist/react";
 function Login(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login] = useMutation(LOGIN);
+  const [error, setError] = useState(false);
+
+  const errStyle = (error) => {
+    if (error) {
+      return { "--sl-input-border-color": "red" };
+    }
+  };
+
+  const handleFocus = () => {
+    if (error) {
+      setError(false);
+    }
+  };
 
   useEffect(() => {
     document.title = props.title;
@@ -25,11 +38,14 @@ function Login(props) {
       Auth.login(token);
     } catch (e) {
       console.log(e);
+      if (e.message.includes("Incorrect credentials")) {
+        setError(true);
+        errStyle(true);
+      }
     }
   };
 
   const handleChange = (event) => {
-    console.log("HANDLECHANGE");
     const { name, value } = event.target;
     setFormState({
       ...formState,
@@ -54,6 +70,8 @@ function Login(props) {
           onSlInput={handleChange}
           clearable
           defaultValue=""
+          style={errStyle(error)}
+          onFocus={handleFocus}
           required
         />
         <br />
@@ -65,16 +83,26 @@ function Login(props) {
           passwordToggle
           clearable
           onSlInput={handleChange}
+          style={errStyle(error)}
+          onfocus={handleFocus}
           required
           defaultValue=""
-          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+          // pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
           helpText="Min. 8 characters, at least 1 uppercase, lowercase, number and special character"
         />
         <br />
         <SlButton type="submit" variant="primary" outline>
           log in
         </SlButton>{" "}
-        <SlButton type="reset" variant="warning" outline>
+        <SlButton
+          type="reset"
+          variant="warning"
+          outline
+          onClick={() => {
+            setError("");
+            errStyle("--sl-input-border-color: var(--sl-color-neutral-300);");
+          }}
+        >
           Reset
         </SlButton>
       </form>

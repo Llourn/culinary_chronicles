@@ -1,49 +1,39 @@
 import React, { useState } from "react";
-
 import {
   SlButton,
-  SlCard,
-  SlRating,
   SlDialog,
   SlDivider,
 } from "@shoelace-style/shoelace/dist/react";
-import styles from "./Card.module.css";
+import styles from "./RecipeControl.module.css";
 
-const Card = ({
-  name,
-  firstName,
-  lastName,
-  description,
-  createdAt,
-  likes,
-  ingredients,
-  directions,
-  image,
+const RecipeControl = ({
+  name = "Recipe Name",
+  firstName = "First Name",
+  lastName = "Last Name",
+  description = "Description",
+  ingredients = ["Ingredient 1", "Ingredient 2", "Ingredient 3"],
+  directions = ["Direction 1", "Direction 2", "Direction 3"],
+  image = "https://via.placeholder.com/150",
 }) => {
   const [open, setOpen] = useState(false);
   let dirCount = 0;
   let ingCount = 0;
 
   return (
-    <SlCard className={styles.cardOverview}>
-      <img
-        className={styles.dialogImage}
-        alt="recipe"
-        src={image}
-        slot="image"
-      />
-      <strong>{name}</strong>
-      <br />
-      <small>{`${firstName} ${lastName}`}</small>
-      <br />
-      {description}
-      <br />
-      <small>{createdAt}</small>
-      <div slot="footer">
-        <SlButton variant="dark" onClick={() => setOpen(true)}>
-          SEE RECIPE
-        </SlButton>
-        <p>{likes}</p>
+    <div className={styles.wrapper}>
+      <div className={styles.imgWrapper}>
+        <img src={image} alt="placeholder" />
+      </div>
+      <div className={styles.group}>
+        <h2 className={styles.title}>{name}</h2>
+        <div className={styles.buttons}>
+          <SlButton variant="primary" outline onClick={() => setOpen(true)}>
+            SEE RECIPE
+          </SlButton>
+          <SlButton variant="danger" outline>
+            DELETE RECIPE
+          </SlButton>
+        </div>
       </div>
       <SlDialog
         className={styles.dialog}
@@ -71,18 +61,12 @@ const Card = ({
             {`${++dirCount}. ${direction}`}
           </p>
         ))}
-        {/* this was for liking the recipe, currently killed because Lorne said so
-        <SlRating
-          label="Rating"
-          getSymbol={() => '<sl-icon name="hand-thumbs-up-fill"></sl-icon>'}
-          max={1}
-        ></SlRating> */}
         <SlButton slot="footer" variant="dark" onClick={() => setOpen(false)}>
           Close
         </SlButton>
       </SlDialog>
-    </SlCard>
+    </div>
   );
 };
 
-export default Card;
+export default RecipeControl;
