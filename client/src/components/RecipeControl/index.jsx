@@ -55,7 +55,6 @@ const RecipeControl = ({ recipe }) => {
         className={styles.dialog}
         label={recipe.name}
         open={open}
-        style={{ "--width": "50vw" }}
         onSlAfterHide={() => setOpen(false)}
       >
         <img className={styles.dialogImage} alt="recipe" src={recipe.image} />

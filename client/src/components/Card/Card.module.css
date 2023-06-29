@@ -40,10 +40,6 @@ img.dialogImage {
   object-fit: cover;
 }
 
-/* .tomato-button::part(base):active {
-  background: rgba(255, 99, 71, 0.2);
-} */
-
 h4 {
   margin: 0;
   padding: 0;
@@ -61,4 +57,18 @@ p.dialogP {
   font-size: 2rem;
   font-weight: bold;
   padding-bottom: 0;
+}
+
+.dialog {
+  --width: 100%;
+}
+
+.dialog::part(base) {
+  margin-top: 4rem;
+}
+
+@media only screen and (min-width: 750px) {
+  .dialog {
+    --width: 850px;
+  }
 }

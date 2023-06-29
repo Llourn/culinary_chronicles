@@ -48,7 +48,6 @@ const Card = ({
         className={styles.dialog}
         label={name}
         open={open}
-        style={{ "--width": "50vw" }}
         onSlAfterHide={() => setOpen(false)}
       >
         <img className={styles.dialogImage} alt="recipe" src={image} />
