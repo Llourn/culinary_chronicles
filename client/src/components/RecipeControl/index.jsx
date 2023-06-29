@@ -17,9 +17,7 @@ const RecipeControl = ({ recipe }) => {
 
   let dirCount = 0;
   let ingCount = 0;
-  console.log(recipe);
   const handleDeleteRecipe = async () => {
-    console.log("DELETE RECIPE", recipe._id);
     try {
       await deleteRecipe({
         variables: { id: recipe._id },
