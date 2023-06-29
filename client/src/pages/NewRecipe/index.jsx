@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./NewRecipe.module.css";
 import { useMutation } from "@apollo/client";
 import { ADD_RECIPE } from "../../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
 const NewRecipe = (props) => {
   const [ingredientsFields, setIngredientsFields] = useState([]);
@@ -26,6 +27,8 @@ const NewRecipe = (props) => {
   });
 
   const [addRecipe] = useMutation(ADD_RECIPE);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = props.title;
@@ -68,13 +71,20 @@ const NewRecipe = (props) => {
       directions: [formState.firstDirection, ...directionsFields],
     };
 
-    try {
-      await addRecipe({
-        variables: newData,
-      });
-    } catch (err) {
-      console.log("There was an error adding a recipe.", err);
-    }
+    // try {
+    //   await addRecipe({
+    //     variables: newData,
+    //   });
+    // } catch (err) {
+    //   console.log("There was an error adding a recipe.", err);
+    // }
+    await addRecipe({
+      variables: newData,
+    })
+      .then((res) => {
+        navigate("/profile");
+      })
+      .catch((err) => console.log("There was an error adding a recipe.", err));
   };
 
   const addElement = (type) => {
