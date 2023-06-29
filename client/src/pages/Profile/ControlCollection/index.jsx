@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_RECIPES_BY_AUTHOR } from "../../../utils/queries";
 import RecipeControl from "../../../components/RecipeControl";
 import styles from "./ControlCollection.module.css";
+import { Link } from "react-router-dom";
 
 const ControlCollection = ({ userId }) => {
   const { loading, data } = useQuery(QUERY_RECIPES_BY_AUTHOR, {
@@ -21,21 +22,16 @@ const ControlCollection = ({ userId }) => {
     <p>LOADING...</p>
   ) : (
     <div className={styles.recipeContainer}>
-      {recipes
-        ? recipes.map((recipe, index) => (
-            <RecipeControl key={index} name={recipe.name} />
-          ))
-        : null}
-      {recipes
-        ? recipes.map((recipe, index) => (
-            <RecipeControl key={index} name={recipe.name} />
-          ))
-        : null}
-      {recipes
-        ? recipes.map((recipe, index) => (
-            <RecipeControl key={index} name={recipe.name} />
-          ))
-        : null}
+      {recipes.length > 0 ? (
+        recipes.map((recipe, index) => (
+          <RecipeControl key={index} name={recipe.name} />
+        ))
+      ) : (
+        <p>
+          You don't seem to have any recipes,{" "}
+          <Link to="/new-recipe">why don't you try making one?</Link>
+        </p>
+      )}
     </div>
   );
 };

@@ -2,7 +2,3 @@
   display: flex;
   flex-wrap: wrap;
 }
-
-.recipeContainer > * {
-  /* flex: 1 0 100px; */
-}
