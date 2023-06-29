@@ -123,3 +123,31 @@ export const QUERY_ALL_RECIPES = gql`
     }
   }
 `;
+
+export const QUERY_RECIPES = gql`
+  query Query {
+    allRecipes {
+      _id
+      author {
+        _id
+        firstName
+        lastName
+        email
+        bio
+        profilePicUrl
+        bannerUrl
+      }
+      name
+      description
+      prepTime
+      cookTime
+      totalTime
+      servings
+      yield
+      ingredients
+      directions
+      image
+      tags
+    }
+  }
+`;
