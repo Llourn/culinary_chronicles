@@ -1,0 +1,34 @@
+.recipeContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pageSpinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageSpinner sl-spinner {
+  margin-top: -1rem;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline: 1rem;
+  margin-bottom: 2rem;
+}
+
+.title > h2 {
+  margin: 0;
+}
+
+.newRecipeCTA {
+  text-align: center;
+  width: 100%;
+  padding-inline: 1rem;
+}

@@ -17,9 +17,16 @@ function Signup(props) {
   const [addUser] = useMutation(ADD_USER);
   const [blockSubmit, setBlockSubmit] = useState(true);
   const [error, setError] = useState("");
+  const [errorP, setErrorP] = useState("");
 
   const errStyle = (error) => {
     if (error) {
+      return { "--sl-input-border-color": "red" };
+    }
+  };
+
+  const errStyleP = (errorP) => {
+    if (errorP) {
       return { "--sl-input-border-color": "red" };
     }
   };
@@ -74,6 +81,12 @@ function Signup(props) {
         errStyle(true);
       } else {
         console.log(error.message);
+      }
+      if (error.message.includes("password")) {
+        setErrorP(
+          "Password must not contain spaces or [ ] { }  | < > ; : ' \" , . ? /"
+        );
+        errStyleP(true);
       }
     }
   };
@@ -135,11 +148,13 @@ function Signup(props) {
           clearable
           onSlInput={handleChange}
           required
+          style={errStyleP(errorP)}
           defaultValue=""
           helpText="Min. 8 characters with at least 1 lowercase, 1 uppercase, 1 number, and 1 symbol."
         />
         <br />
         {error ? <p>{error}</p> : null}
+        {errorP ? <p>{errorP}</p> : null}
         <SlButton
           type="submit"
           variant="primary"
@@ -155,7 +170,9 @@ function Signup(props) {
           onClick={() => {
             setBlockSubmit(true);
             setError("");
+            setErrorP("");
             errStyle("--sl-input-border-color: var(--sl-color-neutral-300);");
+            errStyleP("--sl-input-border-color: var(--sl-color-neutral-300);");
           }}
         >
           Reset

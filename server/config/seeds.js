@@ -1,65 +1,93 @@
+require("dotenv").config();
 const db = require("./connection");
 const { User, Recipe, LikedRecipe } = require("../models");
 
 db.once("open", async () => {
   await User.deleteMany();
-
-  let newUsers = await User.insertMany([
-    {
+  let newUsers = [];
+  newUsers.push(
+    await User.create({
       firstName: "Jake",
       lastName: "Peralta",
       email: "jakeperalta@nine-nine.com",
       password: "Password123!",
-      profilePicUrl: "https://example.com/profiles/jakeperalta.jpg",
-      bannerUrl: "https://example.com/banners/jakeperalta_banner.jpg",
+      profilePicUrl:
+        "https://images.unsplash.com/photo-1514846117827-513efb7aa48a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=993&q=80",
+      bannerUrl:
+        "https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2148&q=80",
       bio: "Detective by day, chef by night. I specialize in adventurous and creative dishes that will keep you on your toes!",
-    },
-    {
+    })
+  );
+
+  newUsers.push(
+    await User.create({
       firstName: "Amy",
       lastName: "Santiago",
       email: "amysantiago@nine-nine.com",
       password: "Password123!",
-      profilePicUrl: "https://example.com/profiles/amysantiago.jpg",
-      bannerUrl: "https://example.com/banners/amysantiago_banner.jpg",
+      profilePicUrl:
+        "https://images.unsplash.com/photo-1499651681375-8afc5a4db253?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2048&q=80",
+      bannerUrl:
+        "https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
       bio: "Precision and perfection are my guiding principles in both detective work and cooking. Prepare to taste dishes that are meticulously crafted.",
-    },
-    {
+    })
+  );
+
+  newUsers.push(
+    await User.create({
       firstName: "Rosa",
       lastName: "Diaz",
       email: "rosadiaz@nine-nine.com",
       password: "Password123!",
-      profilePicUrl: "https://example.com/profiles/rosadiaz.jpg",
-      bannerUrl: "https://example.com/banners/rosadiaz_banner.jpg",
+      profilePicUrl:
+        "https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2342&q=80",
+      bannerUrl:
+        "https://images.unsplash.com/photo-1518291344630-4857135fb581?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2338&q=80",
       bio: "Tough on the outside, but a culinary genius on the inside. I excel in bold and spicy flavors that will leave you craving for more.",
-    },
-    {
+    })
+  );
+
+  newUsers.push(
+    await User.create({
       firstName: "Terry",
       lastName: "Jeffords",
       email: "terryjeffords@nine-nine.com",
       password: "Password123!",
-      profilePicUrl: "https://example.com/profiles/terryjeffords.jpg",
-      bannerUrl: "https://example.com/banners/terryjeffords_banner.jpg",
+      profilePicUrl:
+        "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      bannerUrl:
+        "https://images.unsplash.com/photo-1615224299941-04a854c101d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
       bio: "As a fitness enthusiast and a chef, I believe in creating delicious and healthy meals. Join me on a journey of flavor and nutrition!",
-    },
-    {
+    })
+  );
+
+  newUsers.push(
+    await User.create({
       firstName: "Raymond",
       lastName: "Holt",
       email: "raymondholt@nine-nine.com",
       password: "Password123!",
-      profilePicUrl: "https://example.com/profiles/raymondholt.jpg",
-      bannerUrl: "https://example.com/banners/raymondholt_banner.jpg",
+      profilePicUrl:
+        "https://images.unsplash.com/photo-1474176857210-7287d38d27c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      bannerUrl:
+        "https://images.unsplash.com/reserve/EnF7DhHROS8OMEp2pCkx_Dufer%20food%20overhead%20hig%20res.jpg?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2356&q=80",
       bio: "I bring a touch of elegance and sophistication to the culinary world. My dishes are refined, sophisticated, and prepared with utmost care.",
-    },
-    {
+    })
+  );
+
+  newUsers.push(
+    await User.create({
       firstName: "Charles",
       lastName: "Boyle",
       email: "charles@nine-nine.com",
       password: "Password123!",
-      profilePicUrl: "https://example.com/profiles/charlesboyle.jpg",
-      bannerUrl: "https://example.com/banners/charlesboyle_banner.jpg",
+      profilePicUrl:
+        "https://images.unsplash.com/photo-1618517048316-755f0a0a366e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      bannerUrl:
+        "https://images.unsplash.com/photo-1488992783499-418eb1f62d08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2578&q=80",
       bio: "My passion for food knows no bounds! From hearty comfort food to delicate pastries, I will take you on a gastronomic adventure.",
-    },
-  ]);
+    })
+  );
 
   await Recipe.deleteMany();
 
@@ -579,7 +607,7 @@ db.once("open", async () => {
 
   let likedRecipes = await LikedRecipe.insertMany(likedRecipeQueue);
 
-  console.log(likedRecipes);
+  // console.log(likedRecipes);
 
   process.exit();
 });

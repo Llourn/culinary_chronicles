@@ -41,7 +41,25 @@ const resolvers = {
 
       return await User.populate(result, { path: "author", select: "-email" });
     },
+    recipesByAuthor: async (parent, args) => {
+      const result = await Recipe.find();
+      const populatedRecipes = await User.populate(result, {
+        path: "author",
+      });
 
+      const filteredRecipes = populatedRecipes.filter((recipe) => {
+        // return true;
+        const author = recipe.author;
+
+        if (author._id == args.userId) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      return filteredRecipes;
+    },
     likedRecipes: async (parent, args) => {
       const result = await LikedRecipe.aggregate([
         {
