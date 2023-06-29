@@ -2,3 +2,17 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.pageSpinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageSpinner sl-spinner {
+  margin-top: -1rem;
+}
+
+.title {
+  padding-inline: 1rem;
+}

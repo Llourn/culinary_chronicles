@@ -68,25 +68,13 @@ const NewRecipe = (props) => {
       directions: [formState.firstDirection, ...directionsFields],
     };
 
-    const mutationResponse = await addRecipe({
-      variables: newData,
-    });
-    // const mutationResponse = await addRecipe({
-    //   variables: {
-    //     name: "This is a new recipe name",
-    //     image: "this is an image!",
-    //     description: "This is a description!",
-    //     prepTime: "preptime yo",
-    //     cookTime: "cook times",
-    //     totalTime: "alll times",
-    //     servings: "surfs up",
-    //     yield: "YIUIIIEIIIELT",
-    //     ingredients: ["this is the first one", "this is the second one"],
-    //     directions: ["D this is the first one", "D this is the second one"],
-    //   },
-    // });
-
-    console.log(mutationResponse.data.addRecipe._id);
+    try {
+      await addRecipe({
+        variables: newData,
+      });
+    } catch (err) {
+      console.log("There was an error adding a recipe.", err);
+    }
   };
 
   const addElement = (type) => {

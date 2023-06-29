@@ -5,11 +5,31 @@ import {
   SlDivider,
 } from "@shoelace-style/shoelace/dist/react";
 import styles from "./RecipeControl.module.css";
+import { useMutation } from "@apollo/client";
+import { DELETE_RECIPE } from "../../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
 const RecipeControl = ({ recipe }) => {
+  const [deleteRecipe] = useMutation(DELETE_RECIPE);
   const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
+
   let dirCount = 0;
   let ingCount = 0;
+
+  const handleDeleteRecipe = async () => {
+    console.log("DELETE RECIPE", recipe._id);
+    try {
+      await deleteRecipe({
+        variables: { id: recipe._id },
+      });
+    } catch (err) {
+      console.log("There was an error deleting the recipe.", err);
+    }
+
+    navigate(0);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -22,7 +42,11 @@ const RecipeControl = ({ recipe }) => {
           <SlButton variant="primary" outline onClick={() => setOpen(true)}>
             SEE RECIPE
           </SlButton>
-          <SlButton variant="danger" outline>
+          <SlButton
+            onClick={() => handleDeleteRecipe()}
+            variant="danger"
+            outline
+          >
             DELETE RECIPE
           </SlButton>
         </div>

@@ -2,9 +2,20 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  max-width: 500px;
+  /* max-width: 500px; */
   margin: 1rem;
   gap: 1rem;
+  flex-wrap: wrap;
+  flex: 1 0 40%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  padding-left: 0;
+  flex: 1 0;
 }
 
 .buttons {
@@ -14,6 +25,7 @@
 
 .title {
   font-size: 2rem;
+  margin-top: 0;
 }
 
 img.dialogImage {
@@ -26,4 +38,17 @@ img.dialogImage {
   max-height: 10rem;
   object-position: center;
   object-fit: cover;
+}
+
+.imgWrapper {
+  max-height: 200px;
+  aspect-ratio: 1 / 1;
+  flex: 1 0 150px;
+}
+
+.imgWrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
