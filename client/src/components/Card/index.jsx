@@ -18,14 +18,18 @@ const Card = ({
   likes,
   ingredients,
   directions,
+  image,
 }) => {
   const [open, setOpen] = useState(false);
+  let dirCount = 0;
+  let ingCount = 0;
 
   return (
     <SlCard className={styles.cardOverview}>
       <img
+        className={styles.dialogImage}
         alt="recipe"
-        src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+        src={image}
         slot="image"
       />
       <strong>{name}</strong>
@@ -42,35 +46,37 @@ const Card = ({
         <p>{likes}</p>
       </div>
       <SlDialog
-        label="Recipe"
+        className={styles.dialog}
+        label={name}
         open={open}
         style={{ "--width": "50vw" }}
         onSlAfterHide={() => setOpen(false)}
       >
-        <strong>{name}</strong>
+        <img className={styles.dialogImage} alt="recipe" src={image} />
         <br />
-        <small>{`${firstName} ${lastName}`}</small>
+        {`By: ${firstName} ${lastName}`}
         <br />
         {description}
         <SlDivider />
+        <h4>Ingredients</h4>
         {ingredients?.map((ingredient) => (
-          <p key={ingredient}>
-            <br />
-            {ingredient}
+          <p key={ingredient} className={styles.dialogP}>
+            {`${++ingCount}. ${ingredient}`}
           </p>
         ))}
         <SlDivider />
+        <h4>Directions</h4>
         {directions?.map((direction) => (
-          <p key={direction}>
-            <br />
-            {direction}
+          <p key={direction} className={styles.dialogP}>
+            {`${++dirCount}. ${direction}`}
           </p>
         ))}
+        {/* this was for liking the recipe, currently killed because Lorne said so
         <SlRating
           label="Rating"
           getSymbol={() => '<sl-icon name="hand-thumbs-up-fill"></sl-icon>'}
           max={1}
-        ></SlRating>
+        ></SlRating> */}
         <SlButton slot="footer" variant="dark" onClick={() => setOpen(false)}>
           Close
         </SlButton>

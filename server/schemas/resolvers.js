@@ -18,10 +18,15 @@ const resolvers = {
       return user;
     },
     recipes: async (parent, args) => {
+      let fuzzyName;
+      if (args.name) {
+        fuzzyName = new RegExp(args.name, "i");
+      }
+
       const result = await Recipe.find({
         //or operator to find recipes with tags or name
         //if no tags or name, return all recipes
-        $or: [{ tags: { $in: args.tags } }, { name: { $regex: args.name } }],
+        $or: [{ tags: { $in: args.tags } }, { name: { $regex: fuzzyName } }],
       });
 
       return await User.populate(result, { path: "author" });
