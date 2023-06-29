@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./NewRecipe.module.css";
 import { useMutation } from "@apollo/client";
 import { ADD_RECIPE } from "../../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
 const NewRecipe = (props) => {
   const [ingredientsFields, setIngredientsFields] = useState([]);
@@ -26,6 +27,8 @@ const NewRecipe = (props) => {
   });
 
   const [addRecipe] = useMutation(ADD_RECIPE);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = props.title;
@@ -68,25 +71,20 @@ const NewRecipe = (props) => {
       directions: [formState.firstDirection, ...directionsFields],
     };
 
-    const mutationResponse = await addRecipe({
+    // try {
+    //   await addRecipe({
+    //     variables: newData,
+    //   });
+    // } catch (err) {
+    //   console.log("There was an error adding a recipe.", err);
+    // }
+    await addRecipe({
       variables: newData,
-    });
-    // const mutationResponse = await addRecipe({
-    //   variables: {
-    //     name: "This is a new recipe name",
-    //     image: "this is an image!",
-    //     description: "This is a description!",
-    //     prepTime: "preptime yo",
-    //     cookTime: "cook times",
-    //     totalTime: "alll times",
-    //     servings: "surfs up",
-    //     yield: "YIUIIIEIIIELT",
-    //     ingredients: ["this is the first one", "this is the second one"],
-    //     directions: ["D this is the first one", "D this is the second one"],
-    //   },
-    // });
-
-    console.log(mutationResponse.data.addRecipe._id);
+    })
+      .then((res) => {
+        navigate("/profile");
+      })
+      .catch((err) => console.log("There was an error adding a recipe.", err));
   };
 
   const addElement = (type) => {

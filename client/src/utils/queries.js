@@ -1,14 +1,15 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-  {
+  query Query {
     user {
+      _id
       firstName
       lastName
       email
-      bannerUrl
       bio
       profilePicUrl
+      bannerUrl
     }
   }
 `;
@@ -45,6 +46,34 @@ export const QUERY_USERS_LIKED_RECIPES = gql`
 export const QUERY_RECIPE_LIKE_COUNT = gql`
   query Query($recipeId: ID) {
     recipeLikes(recipeId: $recipeId)
+  }
+`;
+
+export const QUERY_RECIPES_BY_AUTHOR = gql`
+  query Query($userId: ID) {
+    recipesByAuthor(userId: $userId) {
+      _id
+      author {
+        _id
+        firstName
+        lastName
+        email
+        bio
+        profilePicUrl
+        bannerUrl
+      }
+      name
+      description
+      prepTime
+      cookTime
+      totalTime
+      servings
+      yield
+      ingredients
+      directions
+      image
+      tags
+    }
   }
 `;
 
