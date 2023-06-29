@@ -1,5 +1,7 @@
 .splashContainer {
   display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .mainSplash {
@@ -20,7 +22,11 @@
 
 .sideSplash {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  gap: 1rem;
 }
 
 .hero {
@@ -87,4 +93,16 @@ p.dialogP {
   .dialog {
     --width: 850px;
   }
+
+  .sideSplash {
+    flex-direction: column;
+    width: auto;
+  }
+}
+
+.newRecipeContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
 }

@@ -117,8 +117,8 @@ const Home = (props) => {
         </div>
       )}
 
-      {/* <h4 className="i-pd-1rem">NEW</h4>
-      <ul className="card-grid">
+      <h3 className="i-pd-1rem">NEW</h3>
+      <div className={styles.newRecipeContainer}>
         {loading ? (
           <SlSpinner
             style={{
@@ -128,22 +128,22 @@ const Home = (props) => {
             }}
           />
         ) : (
-          recipeList.map((recipes) => (
-            <li className="list-group-recipe" key={recipes._id}>
-              <Card
-                name={recipes.name}
-                firstName={recipes.author.firstName}
-                lastName={recipes.author.lastName}
-                description={recipes.description}
-                createdAt={recipes.createdAt}
-                likes={recipes.likes}
-                ingredients={recipes.ingredients}
-                directions={recipes.directions}
-              />
-            </li>
+          recipeList.map((recipe) => (
+            <Card
+              key={recipe._id}
+              name={recipe.name}
+              firstName={recipe.author.firstName}
+              lastName={recipe.author.lastName}
+              image={recipe.image}
+              description={recipe.description}
+              createdAt={recipe.createdAt}
+              likes={recipe.likes}
+              ingredients={recipe.ingredients}
+              directions={recipe.directions}
+            />
           ))
         )}
-      </ul> */}
+      </div>
     </div>
   );
 };
