@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import NewRecipe from "./NewRecipe";
 import { __Directive } from "graphql";
 import { useQuery } from "@apollo/client";
-import {QUERY_ALL_RECIPES} from "../utils/queries";
+import {QUERY_RECIPES} from "../utils/queries";
 import Card from "../components/Card";
 
 const Home = (props) => {
-  const {loading, data } = useQuery(QUERY_ALL_RECIPES);
+  const {loading, data } = useQuery(QUERY_RECIPES);
+  console.log(data);
   const trendingRecipe = data?.recipes.slice(0,4) || [];
+  
   const recipeList = data?.recipes.slice(4,8) || [];
 
   useEffect(() => {
@@ -19,18 +21,19 @@ const Home = (props) => {
     <h4 className="i-pd-1rem" >
       TRENDING
     </h4>
-    <ul className="list-group">
-      {trendingRecipe.map(recipe => (
-        <li className="list-group-recipe" key={recipe._id}>
+    <ul className="card-grid">
+      {trendingRecipe.map(recipes => (
+        <li className="list-group-recipe" key={recipes._id}>
           <Card 
-          name={recipe.name}
-          firstName={recipe.author.firstName}
-          lastName={recipe.author.lastName}
-          description={recipe.description}
-          createdAt={recipe.createdAt}
-          likes={recipe.likes}
-          ingredients={recipe.ingredients}
-          directions={recipe.directions}/>
+          name={recipes.name}
+          firstName={recipes.author.firstName}
+          lastName={recipes.author.lastName}
+          description={recipes.description}
+          createdAt={recipes.createdAt}
+          likes={recipes.likes}
+          ingredients={recipes.ingredients}
+          directions={recipes.directions}
+          image={recipes.image}/>
         </li>
       ))}
     </ul>
@@ -38,18 +41,18 @@ const Home = (props) => {
     <h4 className="i-pd-1rem" >
       NEW
     </h4>
-    <ul className="list-group">
-      {recipeList.map(recipe => (
-        <li className="list-group-recipe" key={recipe._id}>
+    <ul className="card-grid">
+      {recipeList.map(recipes => (
+        <li className="list-group-recipe" key={recipes._id}>
           {<Card 
-          name={recipe.name}
-          firstName={recipe.author.firstName}
-          lastName={recipe.author.lastName}
-          description={recipe.description}
-          createdAt={recipe.createdAt}
-          likes={recipe.likes}
-          ingredients={recipe.ingredients}
-          directions={recipe.directions}/>}
+          name={recipes.name}
+          firstName={recipes.author.firstName}
+          lastName={recipes.author.lastName}
+          description={recipes.description}
+          createdAt={recipes.createdAt}
+          likes={recipes.likes}
+          ingredients={recipes.ingredients}
+          directions={recipes.directions}/>}
         </li>
       ))}
     </ul>

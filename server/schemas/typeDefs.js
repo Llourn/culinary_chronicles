@@ -47,7 +47,7 @@ const typeDefs = gql`
     recipeLikes(recipeId: ID): Int
   }
 
-  type Mutation {
+ type Mutation {
     addUser(
       firstName: String!
       lastName: String!

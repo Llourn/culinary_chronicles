@@ -36,6 +36,7 @@ const resolvers = {
 
       return await User.populate(result, { path: "author", select: "-email" });
     },
+    
     likedRecipes: async (parent, args) => {
       const result = await LikedRecipe.aggregate([
         {

@@ -1,0 +1,33 @@
+.card-grid {
+    --gap: 12px;
+    --num-cols: 4;
+    --row-height: 300px;
+
+    box-sizing: border-box;
+    padding: var(--gap);
+    display: grid;
+    grid-template-columns: repeat(var(--num-cols), 1fr);
+    grid-auto-rows: var(--row-height);
+    gap: var(--gap);
+}
+.card-grid > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-grid-col-2 {
+    grid-column: span 2;
+
+}
+.card-grid-row-2 {
+    grid-column: span 2;
+    
+}
+
+@media screen and (max-width: 1024px) {
+.card-grid { --num-cols:2;
+        --row-height: 200px;   
+
+    }
+}
