@@ -30,7 +30,6 @@ const Profile = () => {
     user?.bio ||
     `As a bear, I must admit that I have an unabashed and somewhat unhealthy obsession with honey. Oh, the sweet, golden nectar that entices my senses! The mere thought of that sticky, delectable substance sends shivers of delight down my furry spine. Whether it's the delicate floral notes or the rich, indulgent texture, honey holds an irresistible allure for me. I find myself daydreaming about vast fields of blooming flowers, their nectar transforming into the liquid gold that I crave. My heart races at the sight of a beehive, and I can't help but feel an insatiable desire to sample its precious contents. Yes, it's true, my devotion to honey knows no bounds. I gladly wander through forests, endure stings, and brave the wrath of bees, all for that sweet ambrosia that brings me immense joy. Alas, I must admit that my love for honey may be a bit excessive, but can you blame me? It's a weakness that I cannot resist, for in every taste, I find a momentary escape into pure bliss.`;
 
-  console.log(userData);
   return loading ? (
     <div className={styles.pageSpinner}>
       <SlSpinner

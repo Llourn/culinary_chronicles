@@ -17,9 +17,7 @@ const RecipeControl = ({ recipe }) => {
 
   let dirCount = 0;
   let ingCount = 0;
-
   const handleDeleteRecipe = async () => {
-    console.log("DELETE RECIPE", recipe._id);
     try {
       await deleteRecipe({
         variables: { id: recipe._id },
@@ -59,7 +57,7 @@ const RecipeControl = ({ recipe }) => {
       >
         <img className={styles.dialogImage} alt="recipe" src={recipe.image} />
         <br />
-        {`By: ${recipe.firstName} ${recipe.lastName}`}
+        {`By: ${recipe.author.firstName} ${recipe.author.lastName}`}
         <br />
         {recipe.description}
         <SlDivider />

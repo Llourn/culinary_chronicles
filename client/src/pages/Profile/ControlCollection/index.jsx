@@ -17,7 +17,6 @@ const ControlCollection = ({ userId }) => {
   let recipes;
 
   if (data) {
-    console.log(data);
     recipes = data.recipesByAuthor;
   }
 
