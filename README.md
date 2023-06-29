@@ -28,6 +28,10 @@ https://culinary-chronicles-3c88f23f36ac.herokuapp.com/
 
 Following is the screenshots of my application:
 
+![this fullfill all the requirements](A.png)
+
+![this fullfill all the requirements](B.png)
+
 ![this fullfill all the requirements](4.png)
 
 ![this fullfill all the requirements](5.png)
