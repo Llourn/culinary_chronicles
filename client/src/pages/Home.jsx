@@ -14,6 +14,7 @@ const Home = (props) => {
   const [open, setOpen] = useState(false);
 
   const { loading, data } = useQuery(QUERY_RECIPES);
+
   let dirCount = 0;
   let ingCount = 0;
 
@@ -25,7 +26,6 @@ const Home = (props) => {
     mainRecipe = data?.allRecipes[0];
     trendingRecipe = data?.allRecipes?.slice(1, 3);
     recipeList = data?.allRecipes?.slice(4, 8);
-    console.log(data.allRecipes);
   }
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Home = (props) => {
   }, [props.title]);
 
   return (
-    <div>
+    <div className={styles.mainContainer}>
       <div className={styles.hero}>
         <h1>Culinary Chronicles</h1>
         <h3>Recipes That Tell Delicious Stories</h3>

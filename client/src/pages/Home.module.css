@@ -1,3 +1,7 @@
+.mainContainer {
+  padding-bottom: 2rem;
+}
+
 .splashContainer {
   display: flex;
   flex-wrap: wrap;
@@ -8,7 +12,7 @@
   display: flex;
   background-size: cover;
   background-position: center;
-  justify-content: end;
+  justify-content: flex-end;
   flex-direction: column;
   padding-bottom: 2rem;
   flex: 1 0;
@@ -17,7 +21,7 @@
 
 .buttonContainer {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .sideSplash {
