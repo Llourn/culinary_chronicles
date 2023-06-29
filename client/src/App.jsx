@@ -20,7 +20,6 @@ import Home from "./pages/Home";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Test from "./pages/Test";
 import Nav from "./components/Nav/index";
 import Footer from "./components/Footer/index";
 import NewRecipe from "./pages/NewRecipe";
@@ -73,7 +72,6 @@ function App() {
               />
               <Route path="/search" element={<Search />} />
               <Route path="/signup" element={<Signup title="Sign Up" />} />
-              <Route path="/test" element={<Test />} />
               <Route path="*" element={<NoMatch title="Error 404" />} />
             </Routes>
           </main>

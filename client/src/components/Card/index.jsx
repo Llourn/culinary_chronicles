@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import {
   SlButton,
   SlCard,
-  SlRating,
   SlDialog,
   SlDivider,
 } from "@shoelace-style/shoelace/dist/react";
@@ -71,12 +70,6 @@ const Card = ({
             {`${++dirCount}. ${direction}`}
           </p>
         ))}
-        {/* this was for liking the recipe, currently killed because Lorne said so
-        <SlRating
-          label="Rating"
-          getSymbol={() => '<sl-icon name="hand-thumbs-up-fill"></sl-icon>'}
-          max={1}
-        ></SlRating> */}
         <SlButton slot="footer" variant="dark" onClick={() => setOpen(false)}>
           Close
         </SlButton>

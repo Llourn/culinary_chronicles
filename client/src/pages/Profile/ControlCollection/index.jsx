@@ -22,9 +22,9 @@ const ControlCollection = ({ userId }) => {
     <p>LOADING...</p>
   ) : (
     <div className={styles.recipeContainer}>
-      {recipes.length > 0 ? (
+      {recipes?.length > 0 ? (
         recipes.map((recipe, index) => (
-          <RecipeControl key={index} name={recipe.name} />
+          <RecipeControl key={index} recipe={recipe} />
         ))
       ) : (
         <p>
