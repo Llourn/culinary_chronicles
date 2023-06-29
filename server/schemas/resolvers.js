@@ -17,6 +17,11 @@ const resolvers = {
       const user = await User.findById(args.userId).select("-email");
       return user;
     },
+    allRecipes: async (parent, args) => {
+      const result = Recipe.find({});
+
+      return await User.populate(result, { path: "author" });
+    },
     recipes: async (parent, args) => {
       let fuzzyName;
       if (args.name) {
@@ -36,7 +41,7 @@ const resolvers = {
 
       return await User.populate(result, { path: "author", select: "-email" });
     },
-    
+
     likedRecipes: async (parent, args) => {
       const result = await LikedRecipe.aggregate([
         {

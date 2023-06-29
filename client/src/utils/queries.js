@@ -96,25 +96,29 @@ export const QUERY_ALL_RECIPES = gql`
 `;
 
 export const QUERY_RECIPES = gql`
-query recipes {
-  recipes {
-    _id
-    author {
+  query Query {
+    allRecipes {
       _id
-      firstName
-      lastName
+      author {
+        _id
+        firstName
+        lastName
+        email
+        bio
+        profilePicUrl
+        bannerUrl
+      }
+      name
+      description
+      prepTime
+      cookTime
+      totalTime
+      servings
+      yield
+      ingredients
+      directions
+      image
+      tags
     }
-    description
-    prepTime
-    cookTime
-    totalTime
-    servings
-    yield
-    ingredients
-    directions
-    image
-    name
-    tags
-     
   }
-}`
+`;

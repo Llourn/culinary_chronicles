@@ -43,11 +43,12 @@ const typeDefs = gql`
     userById(userId: ID): User
     recipeById(recipeId: ID): Recipe
     recipes(name: String, tags: [String]): [Recipe]
+    allRecipes: [Recipe]
     likedRecipes(userId: ID): [Recipe]
     recipeLikes(recipeId: ID): Int
   }
 
- type Mutation {
+  type Mutation {
     addUser(
       firstName: String!
       lastName: String!
