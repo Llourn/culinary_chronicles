@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
@@ -21,6 +26,7 @@ import Footer from "./components/Footer/index";
 import NewRecipe from "./pages/NewRecipe";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
+import Auth from "./utils/auth";
 
 setBasePath(
   "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/"
@@ -59,7 +65,12 @@ function App() {
                 path="/new-recipe"
                 element={<NewRecipe title="New Recipe" />}
               />
-              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/profile"
+                element={
+                  Auth.loggedIn() ? <Profile /> : <Navigate replace to="/" />
+                }
+              />
               <Route path="/search" element={<Search />} />
               <Route path="/signup" element={<Signup title="Sign Up" />} />
               <Route path="/test" element={<Test />} />
