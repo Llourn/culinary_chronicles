@@ -14,6 +14,9 @@ const Footer = () => {
       >
         <FaGithub />
       </a>
+      <br />
+      <br />
+      <p> Made with love by Lorne, Justin, Sehar, Amanda ©️ </p>
     </footer>
   );
 };
