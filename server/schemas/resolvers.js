@@ -36,7 +36,9 @@ const resolvers = {
       const populatedRecipes = await User.populate(result, {
         path: "author",
       });
-      return populatedRecipes.filter((recipe) => {
+
+      const filteredRecipes = populatedRecipes.filter((recipe) => {
+        // return true;
         const author = recipe.author;
 
         if (author._id == args.userId) {
@@ -45,6 +47,8 @@ const resolvers = {
           return false;
         }
       });
+
+      return filteredRecipes;
     },
     likedRecipes: async (parent, args) => {
       const result = await LikedRecipe.aggregate([

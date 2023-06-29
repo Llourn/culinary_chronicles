@@ -49,7 +49,7 @@ export const QUERY_RECIPE_LIKE_COUNT = gql`
   }
 `;
 
-export const QUERY_RECIPE_BY_AUTHORS = gql`
+export const QUERY_RECIPES_BY_AUTHOR = gql`
   query Query($userId: ID) {
     recipesByAuthor(userId: $userId) {
       _id
